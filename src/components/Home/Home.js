@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BlockContainer } from "../../GlobalStyles";
 import {
   Grid,
@@ -8,12 +8,26 @@ import {
   Title,
   SectionTitle
 } from "./HomeStyles";
-import animals from "./animals.jpg";
-import cars from "./cars.jpg";
-import characters from "./characters.jpg";
 import hero from "./hero.jpg";
+import { db } from "../../firebase/index";
+import getStorageURL from "../../helpers/getStorageURL";
 
 function Home() {
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const collection = await db.collection("categories").get();
+      const categories = await Promise.all(
+        collection.docs.map(async doc => {
+          const itemData = doc.data();
+          const image = await getStorageURL(itemData.image);
+          return { name: itemData.name, image };
+        })
+      );
+      setCategories(categories);
+    };
+    fetchCategories();
+  }, []);
   return (
     <BlockContainer>
       <main>
@@ -21,30 +35,16 @@ function Home() {
         <section>
           <SectionTitle>Categories</SectionTitle>
           <Grid>
-            <Category>
-              <ImageContainer>
-                <img src={cars} alt="" />
-              </ImageContainer>
-              <CategoryTitle>Cars</CategoryTitle>
-            </Category>
-            <Category>
-              <ImageContainer>
-                <img src={animals} alt="" />
-              </ImageContainer>
-              <CategoryTitle>Animals</CategoryTitle>
-            </Category>
-            <Category>
-              <ImageContainer>
-                <img src={characters} alt="" />
-              </ImageContainer>
-              <CategoryTitle>Characters</CategoryTitle>
-            </Category>
-            <Category>
-              <ImageContainer>
-                <img src={cars} alt="" />
-              </ImageContainer>
-              <CategoryTitle>Cars</CategoryTitle>
-            </Category>
+            {categories.length !== 0
+              ? categories.map(category => (
+                  <Category key={category.name}>
+                    <ImageContainer>
+                      <img src={category.image} alt={category.name} />
+                    </ImageContainer>
+                    <CategoryTitle>{category.name}</CategoryTitle>
+                  </Category>
+                ))
+              : null}
           </Grid>
         </section>
       </main>

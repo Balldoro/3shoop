@@ -50,13 +50,14 @@ export const CategoryTitle = styled.h2`
   font-size: 1.8rem;
   color: #fff;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100%;
   top: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-transform: capitalize;
 `;
 
 export const CategoriesContainer = styled.section``;
