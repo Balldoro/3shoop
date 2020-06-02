@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { BlockContainer } from "../../GlobalStyles";
+import { BlockContainer, SectionTitle, Grid } from "../../GlobalStyles";
 import {
-  Grid,
   Category,
   CategoryTitle,
   ImageContainer,
   Title,
-  SectionTitle
+  LinkWrapper
 } from "./HomeStyles";
 import hero from "./hero.jpg";
 import { db } from "../../firebase/index";
@@ -38,10 +37,12 @@ function Home() {
             {categories.length !== 0
               ? categories.map(category => (
                   <Category key={category.name}>
-                    <ImageContainer>
-                      <img src={category.image} alt={category.name} />
-                    </ImageContainer>
-                    <CategoryTitle>{category.name}</CategoryTitle>
+                    <LinkWrapper to={`/${category.name}`}>
+                      <ImageContainer>
+                        <img src={category.image} alt={category.name} />
+                      </ImageContainer>
+                      <CategoryTitle>{category.name}</CategoryTitle>
+                    </LinkWrapper>
                   </Category>
                 ))
               : null}
