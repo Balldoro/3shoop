@@ -1,6 +1,5 @@
 import styled from "styled-components";
-
-export const Wrapper = styled.main``;
+import { Link } from "react-router-dom";
 
 export const Title = styled.h1`
   background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
@@ -15,18 +14,6 @@ export const Title = styled.h1`
   color: #fff;
   background-size: cover;
   font-size: 2.15rem;
-`;
-
-export const Grid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
-  @media (min-width: 380px) {
-    grid-template-columns: 1fr 1fr;
-  }
-  @media (min-width: 780px) {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
 `;
 
 export const ImageContainer = styled.div`
@@ -60,14 +47,6 @@ export const CategoryTitle = styled.h2`
   text-transform: capitalize;
 `;
 
-export const CategoriesContainer = styled.section``;
-
-export const SectionTitle = styled.h2`
-  background-color: #3d98b9;
-  color: #fff;
-  padding: 14px;
-  text-transform: uppercase;
-  font-weight: 400;
-  font-size: 1.5rem;
-  text-align: center;
+export const LinkWrapper = styled(Link)`
+  width: 100%;
 `;
