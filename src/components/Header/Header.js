@@ -1,13 +1,13 @@
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { BlockContainer } from "../../GlobalStyles";
-import { Wrapper, Logo, Cart } from "./HeaderStyles";
+import { Wrapper, Cart, LogoLink } from "./HeaderStyles";
 
 function Header() {
   return (
     <BlockContainer>
       <Wrapper>
-        <Logo>3Shoop</Logo>
+        <LogoLink to="/">3Shoop</LogoLink>
         <Cart>
           <FaShoppingCart />
         </Cart>
