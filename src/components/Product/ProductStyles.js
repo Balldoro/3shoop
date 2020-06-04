@@ -8,7 +8,7 @@ export const Wrapper = styled.section`
 `;
 
 export const ModelViewer = styled.div`
-  height: 700px;
+  width: 100%;
 `;
 
 export const ProductInfo = styled.div`
