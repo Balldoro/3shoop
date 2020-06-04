@@ -12,9 +12,9 @@ function Category({ match }) {
       const collection = await db.collection(match.params.slug).get();
       const items = await Promise.all(
         collection.docs.map(async doc => {
-          const { name, price, imgRef, description } = doc.data();
+          const { name, price, imgRef, modelRef, description } = doc.data();
           const img = await getStorageURL(imgRef);
-          return { name, price, img, description, id: doc.id };
+          return { name, price, img, modelRef, description, id: doc.id };
         })
       );
       setItems(items);
