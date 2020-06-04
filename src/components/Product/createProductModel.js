@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
-function ShowProductModel(cnv, model) {
+function createProductModel(cnv, model) {
   let cnvWidth = cnv.clientWidth;
   let cnvHeight = cnvWidth / 2.1;
   window.addEventListener("resize", () => {
@@ -51,4 +51,4 @@ function ShowProductModel(cnv, model) {
   animate();
 }
 
-export default ShowProductModel;
+export default createProductModel;
