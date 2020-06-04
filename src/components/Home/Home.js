@@ -8,18 +8,20 @@ import {
   LinkWrapper
 } from "./HomeStyles";
 import hero from "./hero.jpg";
-import { db } from "../../firebase/index";
-import getStorageURL from "../../helpers/getStorageURL";
+import {
+  fetchStorageURL,
+  fetchCollection
+} from "../../helpers/firabaseFunctions";
 
 function Home() {
   const [categories, setCategories] = useState([]);
   useEffect(() => {
     const fetchCategories = async () => {
-      const collection = await db.collection("categories").get();
+      const collection = await fetchCollection("categories");
       const categories = await Promise.all(
         collection.docs.map(async doc => {
           const itemData = doc.data();
-          const image = await getStorageURL(itemData.image);
+          const image = await fetchStorageURL(itemData.image);
           return { name: itemData.name, image };
         })
       );

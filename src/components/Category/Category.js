@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../firebase";
-import getStorageURL from "../../helpers/getStorageURL";
 import { BlockContainer, SectionTitle, Grid } from "../../GlobalStyles";
 import { ProductInfo, Product } from "./CategoryStyles";
 import { Link } from "react-router-dom";
+import {
+  fetchStorageURL,
+  fetchCollection
+} from "../../helpers/firabaseFunctions";
 
 function Category({ match }) {
   const [items, setItems] = useState([]);
   useEffect(() => {
     const fetchItems = async () => {
-      const collection = await db.collection(match.params.slug).get();
+      const collection = await fetchCollection(match.params.slug);
       const items = await Promise.all(
         collection.docs.map(async doc => {
           const { name, price, imgRef, modelRef, description } = doc.data();
-          const img = await getStorageURL(imgRef);
+          const img = await fetchStorageURL(imgRef);
           return { name, price, img, modelRef, description, id: doc.id };
         })
       );
