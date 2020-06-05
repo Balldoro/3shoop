@@ -1,6 +1,4 @@
 import React, { useEffect, useState, useRef } from "react";
-import { db } from "../../firebase";
-import getStorageURL from "../../helpers/getStorageURL";
 import { BlockContainer } from "../../GlobalStyles";
 import {
   Wrapper,
@@ -12,37 +10,39 @@ import {
   ProductTitle,
   ModelViewer
 } from "./ProductStyles";
-import ShowProductModel from "./ShowProductModel";
+import createProductModel from "./createProductModel";
+import {
+  fetchItemFromCollection,
+  fetchStorageURL
+} from "../../helpers/firabaseFunctions";
 
 function Product({ match, location }) {
   const [product, setProduct] = useState({});
   const modelContainer = useRef();
   useEffect(() => {
-    const fetchProduct = async () => {
-      const doc = await db
-        .collection(match.params.slug)
-        .doc(match.params.id)
-        .get();
-      const { imgRef, modelRef, name, price, description } = doc.data();
-      const img = await getStorageURL(imgRef);
-      const model = await getStorageURL(modelRef);
-      setProduct({ img, name, price, description, id: doc.id, model });
-    };
-    if (location.state == null) {
-      fetchProduct();
-    } else {
-      const getModelRef = async () => {
-        const model = await getStorageURL(location.state.modelRef);
-        location.state.model = model;
-        setProduct(location.state);
+    const getProductData = async () => {
+      const fetchProduct = async () => {
+        const collection = match.params.slug;
+        const doc = match.params.id;
+        const item = await fetchItemFromCollection(collection, doc);
+        item.img = await fetchStorageURL(item.imgRef);
+        item.model = await fetchStorageURL(item.modelRef);
+        return item;
       };
-      getModelRef();
-    }
+      if (location.state == null) {
+        const product = await fetchProduct();
+        setProduct(product);
+      } else {
+        const product = location.state;
+        product.model = await fetchStorageURL(product.modelRef);
+        setProduct(product);
+      }
+    };
+    getProductData();
   }, [match, location]);
-
   useEffect(() => {
     if (Object.entries(product).length !== 0) {
-      ShowProductModel(modelContainer.current, product.model);
+      createProductModel(modelContainer.current, product.model);
     }
   }, [product]);
 
