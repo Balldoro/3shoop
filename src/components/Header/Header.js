@@ -1,7 +1,8 @@
 import React from "react";
 import { FaShoppingCart } from "react-icons/fa";
 import { BlockContainer } from "../../GlobalStyles";
-import { Wrapper, Cart, LogoLink } from "./HeaderStyles";
+import { Wrapper, LogoLink } from "./HeaderStyles";
+import Cart from "../Cart/Cart";
 
 function Header() {
   return (
