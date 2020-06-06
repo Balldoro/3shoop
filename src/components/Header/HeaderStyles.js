@@ -6,6 +6,7 @@ export const Wrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   height: 55px;
+  position: relative;
   @media (min-width: 1180px) {
     padding: 0;
   }
