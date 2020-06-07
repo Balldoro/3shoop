@@ -16,7 +16,13 @@ import {
   fetchStorageURL
 } from "../../helpers/firabaseFunctions";
 
-function Product({ match, location }) {
+function Product({
+  match,
+  location,
+  addItemToCart,
+  itemsInCart,
+  deleteItemFromCart
+}) {
   const [product, setProduct] = useState({});
   const modelContainer = useRef();
   useEffect(() => {
@@ -39,7 +45,7 @@ function Product({ match, location }) {
       }
     };
     getProductData();
-  }, [match, location]);
+  }, []);
   useEffect(() => {
     if (Object.entries(product).length !== 0) {
       createProductModel(modelContainer.current, product.model);
@@ -58,7 +64,16 @@ function Product({ match, location }) {
             </ProductInfo>
             <PurchaseContainer>
               <ProductPrice>${product.price.toFixed(2)}</ProductPrice>
-              <Button>Add to cart</Button>
+              {itemsInCart.filter(item => item.id === product.id).length !==
+              0 ? (
+                <Button onClick={() => deleteItemFromCart(product)}>
+                  Remove from cart
+                </Button>
+              ) : (
+                <Button onClick={() => addItemToCart(product)}>
+                  Add to cart
+                </Button>
+              )}
             </PurchaseContainer>
           </>
         ) : null}

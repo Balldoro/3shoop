@@ -10,14 +10,8 @@ import {
   TotalPrice
 } from "./CartStyles";
 
-function Cart() {
+function Cart({ itemsInCart, deleteItemFromCart }) {
   const [isActive, setIsActive] = useState(false);
-  const [items, setItems] = useState([1]);
-
-  const deleteItem = e => {
-    console.log("item deleted");
-  };
-
   return (
     <div>
       <CartButton
@@ -30,21 +24,29 @@ function Cart() {
       </CartButton>
       {isActive ? (
         <CartContentWrapper>
-          {items.length !== 0 ? (
+          {itemsInCart.length !== 0 ? (
             <>
               <ul>
-                <CartItem>
-                  <span>Item 1</span>
-                  <div>
-                    <span>$20.95</span>
-                    <DeleteButton onClick={e => deleteItem(e)}>
-                      <FaTimes />
-                    </DeleteButton>
-                  </div>
-                </CartItem>
+                {itemsInCart.map(item => (
+                  <CartItem key={item.id}>
+                    <span>{item.name}</span>
+                    <div>
+                      <span>${item.price.toFixed(2)}</span>
+                      <DeleteButton onClick={() => deleteItemFromCart(item)}>
+                        <FaTimes />
+                      </DeleteButton>
+                    </div>
+                  </CartItem>
+                ))}
               </ul>
-              <TotalPrice>Total: $20.95</TotalPrice>
-              <BuyButton>BUY!</BuyButton>{" "}
+              <TotalPrice>
+                Total: $
+                {itemsInCart
+                  .map(item => item.price)
+                  .reduce((total, item) => (total += item))
+                  .toFixed(2)}
+              </TotalPrice>
+              <BuyButton>BUY!</BuyButton>
             </>
           ) : (
             <EmptyCartText>You have no items in cart</EmptyCartText>
