@@ -15,6 +15,7 @@ function Cart({ itemsInCart, deleteItemFromCart }) {
   return (
     <div>
       <CartButton
+        amount={itemsInCart.length}
         onClick={e => {
           e.preventDefault();
           setIsActive(!isActive);

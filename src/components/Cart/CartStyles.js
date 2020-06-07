@@ -25,12 +25,25 @@ export const CartContentWrapper = styled.div`
 `;
 
 export const CartButton = styled.button`
+position: relative;
   border: none;
   background-color: transparent;
   font-size: 1.2rem;
   color: #3a3a3a;
   cursor: pointer;
   outline: none;
+  &::after {
+    content: '${props => props.amount}';
+    display: ${props => (props.amount === 0 ? "none" : "block")};
+    background-color: #3d98b9;
+    color: #fff;
+    padding: 2px 5px;
+    font-size: 0.95rem;
+    position: absolute;
+    top: 40%;
+    right: 45%;
+    border-radius: 5px;
+  }
 `;
 
 export const DeleteButton = styled.button`
@@ -59,7 +72,8 @@ export const BuyButton = styled.button`
   background-color: #3d98b9;
   color: #fff;
   border: none;
-  width: 250px;
+  width: 80%;
+  max-width: 250px;
   height: 50px;
   border-radius: 5px;
   font-size: 1.25rem;
@@ -71,6 +85,8 @@ export const EmptyCartText = styled.p`
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 100%;
+  text-align: center;
   transform: translate(-50%, -50%);
   font-size: 1.5rem;
 `;
