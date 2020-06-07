@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GlobalStyles } from "./GlobalStyles";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
@@ -7,7 +7,12 @@ import Category from "./components/Category/Category";
 import Product from "./components/Product/Product";
 
 function App() {
-  const [itemsInCart, setItemsInCart] = useState([]);
+  const [itemsInCart, setItemsInCart] = useState(
+    JSON.parse(localStorage.getItem("items")) || []
+  );
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(itemsInCart));
+  }, [itemsInCart]);
   const addItemToCart = item => {
     setItemsInCart(itemsInCart => [...itemsInCart, item]);
   };
