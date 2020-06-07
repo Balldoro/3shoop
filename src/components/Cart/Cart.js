@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import {
   CartItem,
@@ -9,17 +9,20 @@ import {
   EmptyCartText,
   TotalPrice
 } from "./CartStyles";
+import useVisibleComponent from "../../hooks/useVisibleComponent";
 
 function Cart({ itemsInCart, deleteItemFromCart }) {
   const [isActive, setIsActive] = useState(false);
+  const cartContent = useRef();
+  const removeActive = () => {
+    setIsActive(false);
+  };
+  useVisibleComponent(cartContent, removeActive);
   return (
-    <div>
+    <div ref={cartContent}>
       <CartButton
         amount={itemsInCart.length}
-        onClick={e => {
-          e.preventDefault();
-          setIsActive(!isActive);
-        }}
+        onClick={() => setIsActive(!isActive)}
       >
         <FaShoppingCart />
       </CartButton>
