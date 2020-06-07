@@ -7,7 +7,11 @@ import {
   CartContentWrapper,
   DeleteButton,
   EmptyCartText,
-  TotalPrice
+  TotalPrice,
+  CartItemImage,
+  CartItemName,
+  CartItemPrice,
+  CartItemInfo
 } from "./CartStyles";
 import useVisibleComponent from "../../hooks/useVisibleComponent";
 
@@ -33,13 +37,16 @@ function Cart({ itemsInCart, deleteItemFromCart }) {
               <ul>
                 {itemsInCart.map(item => (
                   <CartItem key={item.id}>
-                    <span>{item.name}</span>
-                    <div>
-                      <span>${item.price.toFixed(2)}</span>
-                      <DeleteButton onClick={() => deleteItemFromCart(item)}>
-                        <FaTimes />
-                      </DeleteButton>
-                    </div>
+                    <CartItemInfo>
+                      <CartItemImage src={item.img} alt="" />
+                      <div>
+                        <CartItemName>{item.name}</CartItemName>
+                        <CartItemPrice>${item.price.toFixed(2)}</CartItemPrice>
+                      </div>
+                    </CartItemInfo>
+                    <DeleteButton onClick={() => deleteItemFromCart(item)}>
+                      <FaTimes />
+                    </DeleteButton>
                   </CartItem>
                 ))}
               </ul>

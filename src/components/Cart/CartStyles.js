@@ -60,8 +60,26 @@ export const CartItem = styled.li`
   justify-content: space-between;
   font-size: 1.2rem;
   border-bottom: 1px solid #f7f7f7;
-  padding: 15px;
+  padding: 10px;
   color: #3a3a3a;
+`;
+
+export const CartItemImage = styled.img`
+  width: 80px;
+  margin-right: 0.5rem;
+`;
+
+export const CartItemInfo = styled.div`
+  display: flex;
+`;
+
+export const CartItemName = styled.span`
+  display: block;
+  font-size: 1.2rem;
+`;
+
+export const CartItemPrice = styled.span`
+  font-size: 0.95rem;
 `;
 
 export const BuyButton = styled.button`
