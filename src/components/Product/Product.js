@@ -2,13 +2,14 @@ import React, { useEffect, useState, useRef } from "react";
 import { BlockContainer } from "../../GlobalStyles";
 import {
   Wrapper,
-  ProductInfo,
   Button,
-  ProductDescription,
   PurchaseContainer,
   ProductPrice,
   ProductTitle,
-  ModelViewer
+  ModelViewer,
+  ProductHeader,
+  ProductText,
+  ProductSubTitle
 } from "./ProductStyles";
 import createProductModel from "./createProductModel";
 import {
@@ -55,26 +56,27 @@ function Product({
   return (
     <Wrapper>
       <BlockContainer>
-        <ModelViewer ref={modelContainer}></ModelViewer>
         {Object.entries(product).length !== 0 ? (
           <>
-            <ProductInfo>
+            <ProductHeader>
               <ProductTitle>{product.name}</ProductTitle>
-              <ProductDescription>{product.description}</ProductDescription>
-            </ProductInfo>
-            <PurchaseContainer>
-              <ProductPrice>${product.price.toFixed(2)}</ProductPrice>
-              {itemsInCart.filter(item => item.id === product.id).length !==
-              0 ? (
-                <Button onClick={() => deleteItemFromCart(product)}>
-                  Remove from cart
-                </Button>
-              ) : (
-                <Button onClick={() => addItemToCart(product)}>
-                  Add to cart
-                </Button>
-              )}
-            </PurchaseContainer>
+              <PurchaseContainer>
+                <ProductPrice>${product.price.toFixed(2)}</ProductPrice>
+                {itemsInCart.filter(item => item.id === product.id).length !==
+                0 ? (
+                  <Button onClick={() => deleteItemFromCart(product)}>
+                    Remove from cart
+                  </Button>
+                ) : (
+                  <Button onClick={() => addItemToCart(product)}>
+                    Add to cart
+                  </Button>
+                )}
+              </PurchaseContainer>
+            </ProductHeader>
+            <ModelViewer ref={modelContainer} />
+            <ProductSubTitle>Description</ProductSubTitle>
+            <ProductText>{product.description}</ProductText>
           </>
         ) : null}
       </BlockContainer>

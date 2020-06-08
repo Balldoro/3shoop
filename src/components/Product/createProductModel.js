@@ -4,21 +4,20 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 
 function createProductModel(cnv, model) {
   let cnvWidth = cnv.clientWidth;
-  let cnvHeight = cnvWidth / 2.1;
+  let cnvHeight = cnvWidth / 1.8;
   window.addEventListener("resize", () => {
     if (cnv !== null) {
       cnvWidth = cnv.clientWidth;
-      cnvHeight = cnvWidth / 2.1;
+      cnvHeight = cnvWidth / 1.8;
       renderer.setSize(cnvWidth, cnvHeight);
       camera.aspect = cnvWidth / cnvHeight;
     }
   });
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color("#3D98B9");
+  scene.background = new THREE.Color("#f1f1f1");
 
   const camera = new THREE.PerspectiveCamera(75, cnvWidth / cnvHeight, 1, 2000);
   camera.position.set(0, 150, 200);
-
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(cnvWidth, cnvHeight);
 
