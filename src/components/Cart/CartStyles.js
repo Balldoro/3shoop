@@ -10,6 +10,7 @@ export const CartContentWrapper = styled.div`
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.35);
   top: 70px;
   border-radius: 8px;
+  z-index: 100;
   &::before {
     content: "";
     display: block;
@@ -21,6 +22,7 @@ export const CartContentWrapper = styled.div`
     border-bottom: 20px solid #fff;
     top: -12px;
     right: 10px;
+    filter: drop-shadow(2px -4px 1px rgba(0, 0, 0, 0.15));
   }
 `;
 
