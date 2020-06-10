@@ -25,15 +25,32 @@ function createProductModel(cnv, model) {
   scene.add(hemiLight);
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.target = new THREE.Vector3(0, 0, 0);
   controls.screenSpacePanning = true;
 
   const loader = new GLTFLoader();
   loader.load(
     model,
     function(gltf) {
-      gltf.scene.position.set(0, 0, 0);
-      scene.add(gltf.scene);
+      const model = gltf.scene;
+      const animations = gltf.animations;
+      model.position.set(0, 0, 0);
+      scene.add(model);
+
+      const mixer = new THREE.AnimationMixer(model);
+      const clock = new THREE.Clock();
+
+      if (animations.length !== 0) {
+        const action = mixer.clipAction(animations[0]); // play the first animation
+        action.play();
+      }
+      const animate = () => {
+        requestAnimationFrame(animate);
+        const delta = clock.getDelta();
+        mixer.update(delta);
+        controls.update();
+        renderer.render(scene, camera);
+      };
+      animate();
     },
     undefined,
     function(error) {
@@ -41,13 +58,6 @@ function createProductModel(cnv, model) {
     }
   );
   cnv.appendChild(renderer.domElement);
-
-  const animate = () => {
-    requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
-  };
-  animate();
 }
 
 export default createProductModel;
