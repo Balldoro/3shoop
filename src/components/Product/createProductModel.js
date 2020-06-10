@@ -16,7 +16,7 @@ function createProductModel(cnv, model) {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color("#f1f1f1");
 
-  const camera = new THREE.PerspectiveCamera(75, cnvWidth / cnvHeight, 1, 2000);
+  const camera = new THREE.PerspectiveCamera(75, cnvWidth / cnvHeight, 1, 9500);
   camera.position.set(0, 150, 200);
   const renderer = new THREE.WebGLRenderer();
   renderer.setSize(cnvWidth, cnvHeight);
@@ -26,6 +26,7 @@ function createProductModel(cnv, model) {
 
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.screenSpacePanning = true;
+  controls.maxDistance = 8500;
 
   const loader = new GLTFLoader();
   loader.load(
