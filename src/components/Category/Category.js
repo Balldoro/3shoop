@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { BlockContainer, SectionTitle, Grid } from "../../GlobalStyles";
-import { ProductInfo, Product } from "./CategoryStyles";
+import { ProductInfo, Product, OptionsContainer } from "./CategoryStyles";
 import { Link } from "react-router-dom";
 import {
   fetchStorageURL,
   fetchCollection
 } from "../../helpers/firabaseFunctions";
+import Sort from "../Sort/Sort";
 
 function Category({ match }) {
   const [items, setItems] = useState([]);
@@ -27,6 +28,9 @@ function Category({ match }) {
     <section>
       <SectionTitle>{match.params.slug}</SectionTitle>
       <BlockContainer>
+        <OptionsContainer>
+          <Sort setItems={setItems} />
+        </OptionsContainer>
         <Grid>
           {items.length !== 0
             ? items.map(item => (

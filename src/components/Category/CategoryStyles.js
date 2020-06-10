@@ -15,3 +15,10 @@ export const ProductInfo = styled.div`
   padding: 0 8px;
   margin-top: -4px;
 `;
+
+export const OptionsContainer = styled.div`
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
