@@ -21,4 +21,7 @@ export const OptionsContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media (min-width: 420px) {
+    position: relative;
+  }
 `;

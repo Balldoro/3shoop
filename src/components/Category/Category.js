@@ -7,6 +7,7 @@ import {
   fetchCollection
 } from "../../helpers/firabaseFunctions";
 import Sort from "../Sort/Sort";
+import Filter from "../Filter/Filter";
 
 function Category({ match }) {
   const [items, setItems] = useState([]);
@@ -25,10 +26,11 @@ function Category({ match }) {
     fetchItems();
   }, [match]);
   return (
-    <section>
+    <section style={{ position: "relative" }}>
       <SectionTitle>{match.params.slug}</SectionTitle>
       <BlockContainer>
         <OptionsContainer>
+          <Filter />
           <Sort setItems={setItems} />
         </OptionsContainer>
         <Grid>
