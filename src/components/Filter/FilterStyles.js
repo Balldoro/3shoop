@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import Range from "rc-slider/lib/Range";
+import createSliderWithTooltip from "rc-slider/lib/createSliderWithTooltip";
 
 export const FilterContent = styled.div`
   width: 40%;
@@ -28,6 +30,7 @@ export const FiltersContainer = styled.section`
   background-color: #fff;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
+  overflow: hidden;
   & > h2 {
     margin-bottom: 0;
     @media (min-width: 420px) {
@@ -37,7 +40,7 @@ export const FiltersContainer = styled.section`
   @media (min-width: 420px) {
     top: 100%;
     width: 45%;
-    min-width: 280px;
+    min-width: 300px;
     min-height: auto;
     margin-bottom: 80px;
   }
@@ -74,32 +77,35 @@ export const Checkbox = styled.input`
   margin-right: 0.6rem;
 `;
 
-export const RangeInput = styled.input`
-  width: 100%;
-  margin: 13.8px 0;
-  background-color: transparent;
-  -webkit-appearance: none;
-  &:focus {
-    outline: none;
-  }
-  &::-webkit-slider-runnable-track {
-    background: #3d98b9;
-    border: 0.5px solid #3d98b9;
-    border-radius: 3px;
-    width: 100%;
-    height: 10px;
-    cursor: pointer;
-  }
-  &::-webkit-slider-thumb {
-    margin-top: -9px;
-    width: 24px;
-    height: 24px;
-    background: #fff;
-    border: 1px solid #3d98b9;
+export const StyledRange = styled(createSliderWithTooltip(Range))`
+  width: 93%;
+  margin: 0 auto 3.2rem auto;
+  & .rc-slider-handle {
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    cursor: pointer;
-    -webkit-appearance: none;
-    position: relative;
+    border: 2px solid #3d98b9;
+    margin-top: -7px;
+    &::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #3d98b9;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  & .rc-slider-mark {
+    width: 96%;
+    left: 1.25%;
+  }
+  & .rc-slider-mark-text {
+    color: #3a3a3a;
+    font-size: 0.95rem;
+    margin: 0.5rem 0;
   }
 `;
 
@@ -111,7 +117,7 @@ export const PriceManualBoxesContainer = styled.div`
 
 export const PriceManualBox = styled.input`
   position: relative;
-  padding: 6px 8px;
+  padding: 12px 0;
   border: 2px solid #9fd3e6;
   border-radius: 5px;
   width: 40%;
