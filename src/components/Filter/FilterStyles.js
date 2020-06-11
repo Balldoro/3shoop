@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import Range from "rc-slider/lib/Range";
-import createSliderWithTooltip from "rc-slider/lib/createSliderWithTooltip";
 
 export const FilterContent = styled.div`
   width: 40%;
@@ -75,38 +73,6 @@ export const Checkbox = styled.input`
   width: 18px;
   height: 18px;
   margin-right: 0.6rem;
-`;
-
-export const StyledRange = styled(createSliderWithTooltip(Range))`
-  width: 93%;
-  margin: 0 auto 3.2rem auto;
-  & .rc-slider-handle {
-    width: 22px;
-    height: 22px;
-    border-radius: 50%;
-    border: 2px solid #3d98b9;
-    margin-top: -7px;
-    &::after {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background-color: #3d98b9;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  }
-  & .rc-slider-mark {
-    width: 96%;
-    left: 1.25%;
-  }
-  & .rc-slider-mark-text {
-    color: #3a3a3a;
-    font-size: 0.95rem;
-    margin: 0.5rem 0;
-  }
 `;
 
 export const PriceManualBoxesContainer = styled.div`

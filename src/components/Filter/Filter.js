@@ -12,12 +12,12 @@ import {
   PriceManualBoxesContainer,
   PriceManualBox,
   CategoriesContainer,
-  FilterContent,
-  StyledRange
+  FilterContent
 } from "./FilterStyles";
 import { SectionTitle, BlockContainer } from "../../GlobalStyles";
 import useVisibleComponent from "../../hooks/useVisibleComponent";
 import "rc-slider/assets/index.css";
+import Slider from "../Slider/Slider";
 
 function Filter() {
   const [isActive, setIsActive] = useState(false);
@@ -25,6 +25,9 @@ function Filter() {
   const filterContainer = createRef();
   const removeActive = () => {
     setIsActive(false);
+  };
+  const updatePriceRange = values => {
+    setPriceRange(values);
   };
   useVisibleComponent(filterContainer, removeActive);
   return (
@@ -50,23 +53,7 @@ function Filter() {
               <Category>
                 <CategoryTitle>Price</CategoryTitle>
                 <form>
-                  <StyledRange
-                    className={"range-container"}
-                    min={0}
-                    max={1000}
-                    step={10}
-                    value={priceRange}
-                    onChange={value => setPriceRange(value)}
-                    marks={{ 0: "$0", 1000: "$1000" }}
-                    trackStyle={[{ backgroundColor: "#3d98b9", height: "8px" }]}
-                    railStyle={{ height: "8px" }}
-                    dotStyle={{
-                      border: "none",
-                      backgroundColor: "#3d98b9",
-                      bottom: "-4px"
-                    }}
-                    allowCross={false}
-                  />
+                  <Slider value={priceRange} handleChange={updatePriceRange} />
                   <PriceManualBoxesContainer>
                     <PriceManualBox
                       placeholder="min"
