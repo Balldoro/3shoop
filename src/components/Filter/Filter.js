@@ -18,16 +18,29 @@ import { SectionTitle, BlockContainer } from "../../GlobalStyles";
 import useVisibleComponent from "../../hooks/useVisibleComponent";
 import "rc-slider/assets/index.css";
 import Slider from "../Slider/Slider";
+import { db } from "../../firebase/index";
+import { convertToProductObjectsFrom } from "../../helpers/firabaseFunctions";
 
-function Filter() {
+function Filter({ match, updateItems }) {
   const [isActive, setIsActive] = useState(false);
-  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [priceRangeFilter, setPriceRangeFilter] = useState([0, 1000]);
+  const [animatedFilter, setAnimatedFilter] = useState(false);
   const filterContainer = createRef();
   const removeActive = () => {
     setIsActive(false);
   };
-  const updatePriceRange = values => {
-    setPriceRange(values);
+  const updatePriceRangeFilter = values => {
+    setPriceRangeFilter(values);
+  };
+  const filterItems = async () => {
+    const collection = await db
+      .collection(match.params.slug)
+      .where("price", ">=", priceRangeFilter[0])
+      .where("price", "<=", priceRangeFilter[1])
+      .where("animated", "==", animatedFilter)
+      .get();
+    const items = await convertToProductObjectsFrom(collection);
+    updateItems(items);
   };
   useVisibleComponent(filterContainer, removeActive);
   return (
@@ -45,7 +58,11 @@ function Filter() {
                 <CategoryTitle>Attributes</CategoryTitle>
                 <form>
                   <Label>
-                    <Checkbox type="checkbox" />
+                    <Checkbox
+                      type="checkbox"
+                      checked={animatedFilter}
+                      onChange={() => setAnimatedFilter(!animatedFilter)}
+                    />
                     Animated
                   </Label>
                 </form>
@@ -53,20 +70,23 @@ function Filter() {
               <Category>
                 <CategoryTitle>Price</CategoryTitle>
                 <form>
-                  <Slider value={priceRange} handleChange={updatePriceRange} />
+                  <Slider
+                    value={priceRangeFilter}
+                    handleChange={updatePriceRangeFilter}
+                  />
                   <PriceManualBoxesContainer>
                     <PriceManualBox
                       placeholder="min"
                       min="0"
                       max="1000"
-                      value={priceRange[0]}
+                      value={priceRangeFilter[0]}
                       readOnly
                     />
                     <PriceManualBox
                       placeholder="max"
                       min="0"
                       max="1000"
-                      value={priceRange[1]}
+                      value={priceRangeFilter[1]}
                       readOnly
                     />
                   </PriceManualBoxesContainer>
@@ -76,7 +96,7 @@ function Filter() {
                 <ToggleButton onClick={() => setIsActive(false)}>
                   Cancel
                 </ToggleButton>
-                <SendButton>Filter</SendButton>
+                <SendButton onClick={filterItems}>Filter</SendButton>
               </ActionButtonsContainer>
             </CategoriesContainer>
           </BlockContainer>

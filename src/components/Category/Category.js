@@ -3,8 +3,8 @@ import { BlockContainer, SectionTitle, Grid } from "../../GlobalStyles";
 import { ProductInfo, Product, OptionsContainer } from "./CategoryStyles";
 import { Link } from "react-router-dom";
 import {
-  fetchStorageURL,
-  fetchCollection
+  fetchCollection,
+  convertToProductObjectsFrom
 } from "../../helpers/firabaseFunctions";
 import Sort from "../Sort/Sort";
 import Filter from "../Filter/Filter";
@@ -14,13 +14,7 @@ function Category({ match }) {
   useEffect(() => {
     const fetchItems = async () => {
       const collection = await fetchCollection(match.params.slug);
-      const items = await Promise.all(
-        collection.docs.map(async doc => {
-          const { name, price, imgRef, modelRef, description } = doc.data();
-          const img = await fetchStorageURL(imgRef);
-          return { name, price, img, modelRef, description, id: doc.id };
-        })
-      );
+      const items = await convertToProductObjectsFrom(collection);
       setItems(items);
     };
     fetchItems();
@@ -30,7 +24,7 @@ function Category({ match }) {
       <SectionTitle>{match.params.slug}</SectionTitle>
       <BlockContainer>
         <OptionsContainer>
-          <Filter />
+          <Filter match={match} updateItems={setItems} />
           <Sort setItems={setItems} />
         </OptionsContainer>
         <Grid>
