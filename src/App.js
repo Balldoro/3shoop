@@ -1,47 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { GlobalStyles } from "./GlobalStyles";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import { HashRouter, Route } from "react-router-dom";
 import Category from "./components/Category/Category";
 import Product from "./components/Product/Product";
+import CartContextProvider from "./context/CartContext";
 
 function App() {
-  const [itemsInCart, setItemsInCart] = useState(
-    JSON.parse(localStorage.getItem("items")) || []
-  );
-  useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(itemsInCart));
-  }, [itemsInCart]);
-  const addItemToCart = item => {
-    setItemsInCart(itemsInCart => [...itemsInCart, item]);
-  };
-  const deleteItemFromCart = itemToRemove => {
-    const filteredCart = itemsInCart.filter(
-      item => item.id !== itemToRemove.id
-    );
-    setItemsInCart(filteredCart);
-  };
   return (
     <HashRouter>
       <GlobalStyles />
-      <Header
-        itemsInCart={itemsInCart}
-        deleteItemFromCart={deleteItemFromCart}
-      />
-      <Route path="/" exact component={Home} />
-      <Route path="/:slug" exact component={Category} />
-      <Route
-        path="/:slug/:id"
-        render={props => (
-          <Product
-            {...props}
-            addItemToCart={addItemToCart}
-            itemsInCart={itemsInCart}
-            deleteItemFromCart={deleteItemFromCart}
-          />
-        )}
-      />
+      <CartContextProvider>
+        <Header />
+        <Route path="/" exact component={Home} />
+        <Route path="/:slug" exact component={Category} />
+        <Route path="/:slug/:id" component={Product} />
+      </CartContextProvider>
     </HashRouter>
   );
 }

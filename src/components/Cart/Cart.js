@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import {
   CartItem,
@@ -14,14 +14,16 @@ import {
   CartItemInfo
 } from "./CartStyles";
 import useVisibleComponent from "../../hooks/useVisibleComponent";
+import { CartContext } from "../../context/CartContext";
 
-function Cart({ itemsInCart, deleteItemFromCart }) {
+function Cart() {
   const [isActive, setIsActive] = useState(false);
   const cartContent = useRef();
   const removeActive = () => {
     setIsActive(false);
   };
   useVisibleComponent(cartContent, removeActive);
+  const { itemsInCart, deleteItemFromCart } = useContext(CartContext);
   return (
     <div ref={cartContent}>
       <CartButton
