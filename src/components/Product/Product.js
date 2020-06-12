@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { BlockContainer } from "../../GlobalStyles";
 import {
   Wrapper,
@@ -6,21 +6,19 @@ import {
   PurchaseContainer,
   ProductPrice,
   ProductTitle,
-  ModelViewer,
   ProductHeader,
   ProductText,
   ProductSubTitle
 } from "./ProductStyles";
-import createProductModel from "./createProductModel";
 import {
   fetchItemFromCollection,
   fetchStorageURL
 } from "../../helpers/firabaseFunctions";
 import { CartContext } from "../../context/CartContext";
+import ProductModel from "./ProductModel";
 
 function Product({ match: { params }, location: { state } }) {
   const [product, setProduct] = useState({});
-  const modelContainer = useRef();
   const { itemsInCart, addItemToCart, deleteItemFromCart } = useContext(
     CartContext
   );
@@ -47,11 +45,6 @@ function Product({ match: { params }, location: { state } }) {
     };
     getProductData();
   }, [state, params]);
-  useEffect(() => {
-    if (Object.entries(product).length !== 0) {
-      createProductModel(modelContainer.current, product.model);
-    }
-  }, [product]);
 
   return (
     <Wrapper>
@@ -74,7 +67,7 @@ function Product({ match: { params }, location: { state } }) {
                 )}
               </PurchaseContainer>
             </ProductHeader>
-            <ModelViewer ref={modelContainer} />
+            <ProductModel model={product.model} />
             <ProductSubTitle>Description</ProductSubTitle>
             <ProductText>{product.description}</ProductText>
           </>
