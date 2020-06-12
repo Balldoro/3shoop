@@ -3,9 +3,11 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import React, { createRef, useEffect } from "react";
 import { ModelViewer } from "./ProductStyles";
+import Spinner from "./Spinner/Spinner";
 
 function ProductModel(model) {
   const cnv = createRef();
+  const spinner = createRef();
   useEffect(() => {
     const modelContainer = cnv.current;
     let cnvWidth = modelContainer.clientWidth;
@@ -41,7 +43,12 @@ function ProductModel(model) {
 
     let frameID;
 
-    const loader = new GLTFLoader();
+    const loadingManager = new THREE.LoadingManager();
+    loadingManager.onLoad = () => {
+      spinner.current.remove();
+    };
+
+    const loader = new GLTFLoader(loadingManager);
     loader.load(
       model.model,
       function(gltf) {
@@ -85,9 +92,13 @@ function ProductModel(model) {
       }
     };
     return () => unmountModelView();
-  }, [cnv, model]);
+  }, [cnv, model, spinner]);
 
-  return <ModelViewer ref={cnv} />;
+  return (
+    <ModelViewer ref={cnv}>
+      <Spinner ref={spinner} />
+    </ModelViewer>
+  );
 }
 
 export default React.memo(ProductModel);
