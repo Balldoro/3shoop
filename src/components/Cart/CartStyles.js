@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const CartContentWrapper = styled.div`
   position: absolute;
@@ -20,7 +21,7 @@ export const CartContentWrapper = styled.div`
     border-left: 22px solid transparent;
     border-right: 0;
     border-bottom: 20px solid #fff;
-    top: -12px;
+    top: -18px;
     right: 10px;
     filter: drop-shadow(2px -4px 1px rgba(0, 0, 0, 0.15));
   }
@@ -60,10 +61,27 @@ export const DeleteButton = styled.button`
 export const CartItem = styled.li`
   display: flex;
   justify-content: space-between;
-  font-size: 1.2rem;
   border-bottom: 1px solid #f7f7f7;
   padding: 10px;
+  &:first-child {
+    &:hover,
+    &:focus {
+      background-color: #fafafa;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+  }
+  &:hover,
+  &:focus {
+    background-color: #fafafa;
+  }
+`;
+
+export const CartItemLink = styled(Link)`
+  width: 100%;
+  text-decoration: none;
   color: #3a3a3a;
+  font-size: 1.2rem;
 `;
 
 export const CartItemImage = styled.img`

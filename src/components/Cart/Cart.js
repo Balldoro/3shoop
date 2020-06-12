@@ -11,7 +11,8 @@ import {
   CartItemImage,
   CartItemName,
   CartItemPrice,
-  CartItemInfo
+  CartItemInfo,
+  CartItemLink
 } from "./CartStyles";
 import useVisibleComponent from "../../hooks/useVisibleComponent";
 import { CartContext } from "../../context/CartContext";
@@ -39,13 +40,17 @@ function Cart() {
               <ul>
                 {itemsInCart.map(item => (
                   <CartItem key={item.id}>
-                    <CartItemInfo>
-                      <CartItemImage src={item.img} alt="" />
-                      <div>
-                        <CartItemName>{item.name}</CartItemName>
-                        <CartItemPrice>${item.price.toFixed(2)}</CartItemPrice>
-                      </div>
-                    </CartItemInfo>
+                    <CartItemLink to={`/${item.path}`}>
+                      <CartItemInfo>
+                        <CartItemImage src={item.img} alt="" />
+                        <div>
+                          <CartItemName>{item.name}</CartItemName>
+                          <CartItemPrice>
+                            ${item.price.toFixed(2)}
+                          </CartItemPrice>
+                        </div>
+                      </CartItemInfo>
+                    </CartItemLink>
                     <DeleteButton onClick={() => deleteItemFromCart(item)}>
                       <FaTimes />
                     </DeleteButton>

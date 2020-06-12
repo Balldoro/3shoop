@@ -32,6 +32,7 @@ function Product({ match: { params }, location: { state } }) {
         const item = await fetchItemFromCollection(collection, doc);
         item.img = await fetchStorageURL(item.imgRef);
         item.model = await fetchStorageURL(item.modelRef);
+        item.path = `${params.slug}/${params.id}`;
         return item;
       };
       if (state == null) {
@@ -39,6 +40,7 @@ function Product({ match: { params }, location: { state } }) {
         setProduct(product);
       } else {
         const product = state;
+        product.path = `${params.slug}/${params.id}`;
         product.model = await fetchStorageURL(product.modelRef);
         setProduct(product);
       }
