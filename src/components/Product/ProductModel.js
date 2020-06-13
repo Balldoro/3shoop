@@ -30,7 +30,6 @@ function ProductModel(model) {
       1,
       9500
     );
-    camera.position.set(0, 150, 200);
     const renderer = new THREE.WebGLRenderer();
     renderer.setSize(cnvWidth, cnvHeight);
 
@@ -54,7 +53,20 @@ function ProductModel(model) {
       function(gltf) {
         const model = gltf.scene;
         const animations = gltf.animations;
-        model.position.set(0, 0, 0);
+
+        const box = new THREE.Box3().setFromObject(model);
+        const boxCenter = box.getCenter(new THREE.Vector3());
+        const boxSize = box.getSize(new THREE.Vector3());
+        const boxMaxDimension = Math.max(boxSize.x, boxSize.y, boxSize.z);
+
+        model.position.set(
+          model.position.x - boxCenter.x,
+          model.position.y - boxCenter.y,
+          model.position.z - boxCenter.z
+        );
+
+        camera.position.set(0, boxMaxDimension / 2, boxMaxDimension);
+        camera.lookAt(model.position);
         scene.add(model);
 
         const mixer = new THREE.AnimationMixer(model);
