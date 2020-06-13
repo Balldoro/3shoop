@@ -51,9 +51,15 @@ function ProductModel(model) {
     const renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(cnvWidth, cnvHeight);
+    renderer.toneMapping = THREE.ReinhardToneMapping;
+    renderer.toneMappingExposure = 2.5;
+    renderer.shadowMap.enabled = true;
 
     const hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 4);
     scene.add(hemiLight);
+
+    const spotLight = new THREE.SpotLight(0xffa95c, 4);
+    scene.add(spotLight);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.screenSpacePanning = true;
@@ -118,6 +124,13 @@ function ProductModel(model) {
         }
         const animate = () => {
           frameID = requestAnimationFrame(animate);
+
+          spotLight.position.set(
+            camera.position.x + 10,
+            camera.position.y + 10,
+            camera.position.z + 10
+          );
+
           const delta = clock.getDelta();
           mixer.update(delta);
           controls.update();
