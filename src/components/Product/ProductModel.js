@@ -1,23 +1,31 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-import React, { createRef, useEffect } from "react";
-import { ModelViewer } from "./ProductStyles";
+import React, { createRef, useEffect, useState } from "react";
+import { ModelViewer, Settings, SettingsButton } from "./ProductStyles";
 import Spinner from "./Spinner/Spinner";
+import { MdFullscreen, MdFullscreenExit } from "react-icons/md";
 
 function ProductModel(model) {
   const cnv = createRef();
   const spinner = createRef();
+  const [isFullScreen, setIsFullScreen] = useState(false);
   useEffect(() => {
     const modelContainer = cnv.current;
     let cnvWidth = modelContainer.clientWidth;
     let cnvHeight = cnvWidth / 1.8;
 
     const resizeModelView = () => {
-      cnvWidth = modelContainer.clientWidth;
-      cnvHeight = cnvWidth / 1.8;
-      renderer.setSize(cnvWidth, cnvHeight);
+      if (isFullScreen) {
+        cnvWidth = window.innerWidth;
+        cnvHeight = window.innerHeight;
+      } else {
+        cnvWidth = modelContainer.clientWidth;
+        cnvHeight = cnvWidth / 1.8;
+      }
       camera.aspect = cnvWidth / cnvHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(cnvWidth, cnvHeight);
     };
     window.addEventListener("resize", resizeModelView);
 
@@ -30,7 +38,9 @@ function ProductModel(model) {
       1,
       9500
     );
-    const renderer = new THREE.WebGLRenderer();
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(cnvWidth, cnvHeight);
 
     const hemiLight = new THREE.HemisphereLight(0xffeeb1, 0x080820, 4);
@@ -91,7 +101,6 @@ function ProductModel(model) {
       }
     );
     modelContainer.appendChild(renderer.domElement);
-
     const unmountModelView = () => {
       const stop = () => {
         cancelAnimationFrame(frameID);
@@ -104,11 +113,35 @@ function ProductModel(model) {
       }
     };
     return () => unmountModelView();
-  }, [cnv, model, spinner]);
+  }, [cnv, model, spinner, isFullScreen]);
+
+  const fullScreenMode = () => {
+    setIsFullScreen(!isFullScreen);
+    if (isFullScreen) {
+      document.exitFullscreen();
+    } else {
+      cnv.current.requestFullscreen();
+    }
+  };
 
   return (
     <ModelViewer ref={cnv}>
       <Spinner ref={spinner} />
+      <Settings>
+        <SettingsButton onClick={fullScreenMode}>
+          {isFullScreen ? (
+            <>
+              <MdFullscreenExit />
+              <span>Exit Full Screen</span>
+            </>
+          ) : (
+            <>
+              <MdFullscreen />
+              <span>Full Screen</span>
+            </>
+          )}
+        </SettingsButton>
+      </Settings>
     </ModelViewer>
   );
 }

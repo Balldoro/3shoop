@@ -9,9 +9,13 @@ export const Wrapper = styled.section`
 
 export const ModelViewer = styled.div`
   width: 100%;
+  position: relative;
   & > canvas {
     border: 1px solid #dcdcdc;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
   }
 `;
 
@@ -84,4 +88,38 @@ export const ProductSubTitle = styled.h3`
 
 export const ProductText = styled.p`
   font-size: 1rem;
+`;
+
+export const Settings = styled.div`
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 15px;
+`;
+
+export const SettingsButton = styled.div`
+  border: none;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  & > svg {
+    width: 25px;
+    height: 25px;
+    font-size: 1.2rem;
+    padding: 2px;
+  }
+  &:hover,
+  &:focus {
+    & > svg {
+      background-color: #3d98b9;
+      color: #fff;
+      width: 25px;
+      border-radius: 50%;
+      height: 25px;
+      padding: 2px;
+    }
+  }
 `;
