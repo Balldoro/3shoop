@@ -41,6 +41,7 @@ function Filter({ match, updateItems }) {
       .get();
     const items = await convertToProductObjectsFrom(collection);
     updateItems(items);
+    setIsActive(false);
   };
   useVisibleComponent(filterContainer, removeActive);
   return (

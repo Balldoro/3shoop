@@ -39,7 +39,7 @@ function Cart() {
             <>
               <ul>
                 {itemsInCart.map(item => (
-                  <CartItem key={item.id}>
+                  <CartItem key={item.id} onClick={() => setIsActive(false)}>
                     <CartItemLink to={`/${item.path}`}>
                       <CartItemInfo>
                         <CartItemImage src={item.img} alt="" />
