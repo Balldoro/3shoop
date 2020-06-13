@@ -95,9 +95,11 @@ export const Settings = styled.div`
   bottom: 0;
   right: 0;
   padding: 15px;
+  display: flex;
 `;
 
 export const SettingsButton = styled.div`
+  position: relative;
   border: none;
   background-color: transparent;
   display: flex;
@@ -105,21 +107,48 @@ export const SettingsButton = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  margin-left: 1rem;
   & > svg {
-    width: 25px;
-    height: 25px;
-    font-size: 1.2rem;
-    padding: 2px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 3px;
   }
-  &:hover,
-  &:focus {
-    & > svg {
-      background-color: #3d98b9;
-      color: #fff;
-      width: 25px;
-      border-radius: 50%;
-      height: 25px;
-      padding: 2px;
+  & > span {
+    display: none;
+  }
+  @media (hover: hover) {
+    &:hover {
+      & > svg {
+        background-color: #3d98b9;
+        color: #fff;
+      }
+      & > span {
+        display: inline;
+      }
     }
+  }
+`;
+
+export const SettingsButtonTip = styled.span`
+  position: absolute;
+  top: -40px;
+  transform: translateX(-43%);
+  background-color: #3d98b9;
+  border-radius: 6px;
+  color: #fff;
+  width: 100px;
+  text-align: center;
+  padding: 5px;
+  &::after {
+    content: "";
+    display: block;
+    width: 0;
+    position: absolute;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 14px solid #3d98b9;
+    right: 1px;
   }
 `;

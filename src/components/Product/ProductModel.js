@@ -2,19 +2,28 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import React, { createRef, useEffect, useState } from "react";
-import { ModelViewer, Settings, SettingsButton } from "./ProductStyles";
+import {
+  ModelViewer,
+  Settings,
+  SettingsButton,
+  SettingsButtonTip
+} from "./ProductStyles";
 import Spinner from "./Spinner/Spinner";
-import { MdFullscreen, MdFullscreenExit } from "react-icons/md";
+import { MdFullscreen, MdExtension } from "react-icons/md";
 
 function ProductModel(model) {
   const cnv = createRef();
   const spinner = createRef();
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isWireframe, setIsWireframe] = useState(false);
   useEffect(() => {
     const modelContainer = cnv.current;
     let cnvWidth = modelContainer.clientWidth;
     let cnvHeight = cnvWidth / 1.8;
-
+    if (isFullScreen) {
+      cnvWidth = window.innerWidth;
+      cnvHeight = window.innerHeight;
+    }
     const resizeModelView = () => {
       if (isFullScreen) {
         cnvWidth = window.innerWidth;
@@ -69,6 +78,27 @@ function ProductModel(model) {
         const boxSize = box.getSize(new THREE.Vector3());
         const boxMaxDimension = Math.max(boxSize.x, boxSize.y, boxSize.z);
 
+        if (isWireframe) {
+          model.traverse(child => {
+            if (child instanceof THREE.Mesh) {
+              const wireframeGeometry = new THREE.WireframeGeometry(
+                child.geometry
+              );
+              const wireframeMaterial = new THREE.LineBasicMaterial({
+                color: "#3d98b9"
+              });
+              const wireframe = new THREE.LineSegments(
+                wireframeGeometry,
+                wireframeMaterial
+              );
+              wireframe.name = "wireframe";
+              child.add(wireframe);
+            }
+          });
+        } else {
+          scene.remove().getObjectByName("wireframe");
+        }
+
         model.position.set(
           model.position.x - boxCenter.x,
           model.position.y - boxCenter.y,
@@ -113,7 +143,7 @@ function ProductModel(model) {
       }
     };
     return () => unmountModelView();
-  }, [cnv, model, spinner, isFullScreen]);
+  }, [cnv, model, spinner, isFullScreen, isWireframe]);
 
   const fullScreenMode = () => {
     setIsFullScreen(!isFullScreen);
@@ -129,17 +159,20 @@ function ProductModel(model) {
       <Spinner ref={spinner} />
       <Settings>
         <SettingsButton onClick={fullScreenMode}>
-          {isFullScreen ? (
-            <>
-              <MdFullscreenExit />
-              <span>Exit Full Screen</span>
-            </>
-          ) : (
-            <>
-              <MdFullscreen />
-              <span>Full Screen</span>
-            </>
-          )}
+          <MdFullscreen
+            style={
+              isFullScreen ? { backgroundColor: "#3d98b9", color: "#fff" } : {}
+            }
+          />
+          <SettingsButtonTip>Full Screen</SettingsButtonTip>
+        </SettingsButton>
+        <SettingsButton onClick={() => setIsWireframe(!isWireframe)}>
+          <MdExtension
+            style={
+              isWireframe ? { backgroundColor: "#3d98b9", color: "#fff" } : {}
+            }
+          />
+          <SettingsButtonTip>Wireframe</SettingsButtonTip>
         </SettingsButton>
       </Settings>
     </ModelViewer>
