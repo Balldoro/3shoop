@@ -14,22 +14,22 @@ import { MdFullscreen, MdExtension } from "react-icons/md";
 function ProductModel(model) {
   const cnv = createRef();
   const spinner = createRef();
-  const [isFullScreen, setIsFullScreen] = useState(false);
   const [isWireframe, setIsWireframe] = useState(false);
   useEffect(() => {
     const modelContainer = cnv.current;
     let cnvWidth = modelContainer.clientWidth;
-    let cnvHeight = cnvWidth / 1.8;
-    if (isFullScreen) {
-      cnvWidth = window.innerWidth;
+    let cnvHeight;
+    if (cnvWidth === window.innerWidth) {
       cnvHeight = window.innerHeight;
+    } else {
+      cnvHeight = cnvWidth / 1.8;
     }
+
     const resizeModelView = () => {
-      if (isFullScreen) {
-        cnvWidth = window.innerWidth;
+      cnvWidth = modelContainer.clientWidth;
+      if (cnvWidth === window.innerWidth) {
         cnvHeight = window.innerHeight;
       } else {
-        cnvWidth = modelContainer.clientWidth;
         cnvHeight = cnvWidth / 1.8;
       }
       camera.aspect = cnvWidth / cnvHeight;
@@ -71,6 +71,9 @@ function ProductModel(model) {
     loadingManager.onLoad = () => {
       spinner.current.remove();
     };
+    loadingManager.onStart = () => {
+      cnv.current.appendChild(spinner.current);
+    };
 
     const loader = new GLTFLoader(loadingManager);
     loader.load(
@@ -98,6 +101,7 @@ function ProductModel(model) {
                 wireframeMaterial
               );
               wireframe.name = "wireframe";
+
               child.add(wireframe);
             }
           });
@@ -144,6 +148,7 @@ function ProductModel(model) {
       }
     );
     modelContainer.appendChild(renderer.domElement);
+
     const unmountModelView = () => {
       const stop = () => {
         cancelAnimationFrame(frameID);
@@ -155,12 +160,12 @@ function ProductModel(model) {
         scene.remove(scene.children[0]);
       }
     };
+
     return () => unmountModelView();
-  }, [cnv, model, spinner, isFullScreen, isWireframe]);
+  }, [cnv, model, spinner, isWireframe]);
 
   const fullScreenMode = () => {
-    setIsFullScreen(!isFullScreen);
-    if (isFullScreen) {
+    if (document.fullscreenElement) {
       document.exitFullscreen();
     } else {
       cnv.current.requestFullscreen();
@@ -172,11 +177,7 @@ function ProductModel(model) {
       <Spinner ref={spinner} />
       <Settings>
         <SettingsButton onClick={fullScreenMode}>
-          <MdFullscreen
-            style={
-              isFullScreen ? { backgroundColor: "#3d98b9", color: "#fff" } : {}
-            }
-          />
+          <MdFullscreen />
           <SettingsButtonTip>Full Screen</SettingsButtonTip>
         </SettingsButton>
         <SettingsButton onClick={() => setIsWireframe(!isWireframe)}>
