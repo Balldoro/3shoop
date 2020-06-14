@@ -38,6 +38,7 @@ function Product({ match: { params }, location: { state } }) {
         setProduct(product);
       } else {
         const product = state;
+        product.img = await fetchStorageURL(product.imgRef);
         product.path = `${params.slug}/${params.id}`;
         product.model = await fetchStorageURL(product.modelRef);
         setProduct(product);

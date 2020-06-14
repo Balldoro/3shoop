@@ -14,16 +14,23 @@ export const fetchItemFromCollection = async (collection, doc) => {
 };
 
 export const fetchStorageURL = async ref => {
-  const url = await storage.refFromURL(ref).getDownloadURL();
-  return url;
+  if (Array.isArray(ref)) {
+    return Promise.all(
+      ref.map(
+        async singleRef => await storage.refFromURL(singleRef).getDownloadURL()
+      )
+    );
+  } else {
+    return await storage.refFromURL(ref).getDownloadURL();
+  }
 };
 
 export const convertToProductObjectsFrom = async collection => {
   const items = await Promise.all(
     collection.docs.map(async doc => {
       const { name, price, imgRef, modelRef, description } = doc.data();
-      const img = await fetchStorageURL(imgRef);
-      return { name, price, img, modelRef, description, id: doc.id };
+      const img = await fetchStorageURL(imgRef[0]);
+      return { name, price, img, imgRef, modelRef, description, id: doc.id };
     })
   );
   return items;
