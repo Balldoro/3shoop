@@ -16,6 +16,7 @@ import {
 } from "../../helpers/firabaseFunctions";
 import { CartContext } from "../../context/CartContext";
 import ProductModel from "./ProductModel";
+import Slider from "./Slider/Slider";
 
 function Product({ match: { params }, location: { state } }) {
   const [product, setProduct] = useState({});
@@ -69,6 +70,11 @@ function Product({ match: { params }, location: { state } }) {
               </PurchaseContainer>
             </ProductHeader>
             <ProductModel model={product.model} />
+            <Slider>
+              {product.img.map(imgSrc => (
+                <img src={imgSrc} alt="" key={imgSrc} />
+              ))}
+            </Slider>
             <ProductSubTitle>Description</ProductSubTitle>
             <ProductText>{product.description}</ProductText>
           </>
