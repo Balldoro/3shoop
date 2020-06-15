@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   background-color: #fafafa;
@@ -62,6 +63,64 @@ export const ProgressCircle = styled.div`
     transform: translateY(-50%);
     width: 2.2rem;
     background-color: #d4eef7;
+  }
+`;
+
+export const ProgressTitle = styled.h2`
+  color: #3d98b9;
+  font-size: 2.2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 400;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+`;
+
+export const Label = styled.label`
+  font-size: 1.15rem;
+  margin-bottom: 0.4rem;
+  display: inline-block;
+`;
+
+export const Input = styled.input`
+  border: 1px solid #e0e0e0;
+  background-color: #fdfdfd;
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 1.5rem;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
+`;
+
+export const FieldContainer = styled.div`
+  width: 100%;
+  @media (min-width: 620px) {
+    width: 50%;
+  }
+`;
+
+export const NextLink = styled(Link)`
+  border: none;
+  background-color: #3d98b9;
+  color: #fff;
+  height: 60px;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  margin: 1.5rem 0;
+  width: 100%;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  @media (min-width: 620px) {
+    width: 25%;
   }
 `;
 

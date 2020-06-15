@@ -10,7 +10,9 @@ import {
 } from "./PaymentStyles";
 import { BlockContainer } from "../../GlobalStyles";
 import { CartContext } from "../../context/CartContext";
-import { Redirect, useRouteMatch } from "react-router-dom";
+import { Redirect, useRouteMatch, Route } from "react-router-dom";
+import Details from "./Details/Details";
+import Billing from "./Billing/Billing";
 
 function Payment() {
   const { itemsInCart } = useContext(CartContext);
@@ -36,21 +38,27 @@ function Payment() {
     <Wrapper>
       <BlockContainer>
         {itemsInCart.length !== 0 ? (
-          <ProgressContainer>
-            <ProgressOutLine></ProgressOutLine>
-            <ProgressCirclesContainer>
-              <ProgressCircle
-                active={url === "/payment/details"}
-                done={url !== "/payment/details"}
-              />
-              <ProgressCircle
-                active={url === "/payment/billing"}
-                done={url !== "/payment/details" && url !== "/payment/billing"}
-              />
-              <ProgressCircle active={url === "/payment/summary"} />
-            </ProgressCirclesContainer>
-            <ProgressOutLine></ProgressOutLine>
-          </ProgressContainer>
+          <>
+            <ProgressContainer>
+              <ProgressOutLine></ProgressOutLine>
+              <ProgressCirclesContainer>
+                <ProgressCircle
+                  active={url === "/payment/details"}
+                  done={url !== "/payment/details"}
+                />
+                <ProgressCircle
+                  active={url === "/payment/billing"}
+                  done={
+                    url !== "/payment/details" && url !== "/payment/billing"
+                  }
+                />
+                <ProgressCircle active={url === "/payment/summary"} />
+              </ProgressCirclesContainer>
+              <ProgressOutLine></ProgressOutLine>
+            </ProgressContainer>
+            <Route path="/payment/details" component={Details} />
+            <Route path="/payment/billing" component={Billing} />
+          </>
         ) : (
           <>
             <ErrorMessage>
