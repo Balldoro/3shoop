@@ -34,7 +34,6 @@ position: relative;
   font-size: 1.2rem;
   color: #3a3a3a;
   cursor: pointer;
-  outline: none;
   &::after {
     content: '${props => props.amount}';
     display: ${props => (props.amount === 0 ? "none" : "block")};
@@ -102,11 +101,16 @@ export const CartItemPrice = styled.span`
   font-size: 0.95rem;
 `;
 
-export const BuyButton = styled.button`
+export const BuyLink = styled(Link)`
+  display: block;
   position: absolute;
   bottom: 15px;
   left: 50%;
   transform: translateX(-50%);
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: #3d98b9;
   color: #fff;
   border: none;

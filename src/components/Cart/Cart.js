@@ -2,7 +2,6 @@ import React, { useState, useRef, useContext } from "react";
 import { FaShoppingCart, FaTimes } from "react-icons/fa";
 import {
   CartItem,
-  BuyButton,
   CartButton,
   CartContentWrapper,
   DeleteButton,
@@ -12,7 +11,8 @@ import {
   CartItemName,
   CartItemPrice,
   CartItemInfo,
-  CartItemLink
+  CartItemLink,
+  BuyLink
 } from "./CartStyles";
 import useVisibleComponent from "../../hooks/useVisibleComponent";
 import { CartContext } from "../../context/CartContext";
@@ -30,6 +30,7 @@ function Cart() {
       <CartButton
         amount={itemsInCart.length}
         onClick={() => setIsActive(!isActive)}
+        tabIndex={0}
       >
         <FaShoppingCart />
       </CartButton>
@@ -39,8 +40,11 @@ function Cart() {
             <>
               <ul>
                 {itemsInCart.map(item => (
-                  <CartItem key={item.id} onClick={() => setIsActive(false)}>
-                    <CartItemLink to={`/${item.path}`}>
+                  <CartItem key={item.id}>
+                    <CartItemLink
+                      to={`/${item.path}`}
+                      onClick={() => setIsActive(false)}
+                    >
                       <CartItemInfo>
                         <CartItemImage src={item.img} alt="" />
                         <div>
@@ -64,7 +68,9 @@ function Cart() {
                   .reduce((total, item) => (total += item))
                   .toFixed(2)}
               </TotalPrice>
-              <BuyButton>BUY!</BuyButton>
+              <BuyLink to="/payment/details" onClick={() => setIsActive(false)}>
+                BUY!
+              </BuyLink>
             </>
           ) : (
             <EmptyCartText>You have no items in cart</EmptyCartText>
