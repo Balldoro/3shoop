@@ -8,7 +8,8 @@ import {
   ProductTitle,
   ProductHeader,
   ProductText,
-  ProductSubTitle
+  ProductSubTitle,
+  ProductInfo
 } from "./ProductStyles";
 import {
   fetchItemFromCollection,
@@ -17,12 +18,19 @@ import {
 import { CartContext } from "../../context/CartContext";
 import ProductModel from "./ProductModel";
 import Slider from "./Slider/Slider";
+import ImageViewer from "./ImageViewer/ImageViewer";
 
 function Product({ match: { params }, location: { state } }) {
   const [product, setProduct] = useState({});
+  const [viewImageSrc, setViewImageSrc] = useState(null);
   const { itemsInCart, addItemToCart, deleteItemFromCart } = useContext(
     CartContext
   );
+
+  const removeViewImageSrc = () => {
+    setViewImageSrc(null);
+  };
+
   useEffect(() => {
     const getProductData = async () => {
       const fetchProduct = async () => {
@@ -72,11 +80,28 @@ function Product({ match: { params }, location: { state } }) {
             <ProductModel model={product.model} />
             <Slider>
               {product.img.map(imgSrc => (
-                <img src={imgSrc} alt="" key={imgSrc} />
+                <img
+                  src={imgSrc}
+                  alt=""
+                  key={imgSrc}
+                  onClick={() => setViewImageSrc(imgSrc)}
+                />
               ))}
             </Slider>
-            <ProductSubTitle>Description</ProductSubTitle>
-            <ProductText>{product.description}</ProductText>
+            {viewImageSrc && (
+              <ImageViewer
+                src={viewImageSrc}
+                handleOnClick={removeViewImageSrc}
+              />
+            )}
+            <ProductInfo>
+              <ProductSubTitle>Description</ProductSubTitle>
+              <ProductText>{product.description}</ProductText>
+            </ProductInfo>
+            <ProductInfo>
+              <ProductSubTitle>Credits</ProductSubTitle>
+              <ProductText>Created by Danov Abramov</ProductText>
+            </ProductInfo>
           </>
         ) : null}
       </BlockContainer>
