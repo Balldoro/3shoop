@@ -9,10 +9,10 @@ import { FaTimes } from "react-icons/fa";
 
 function ImageViewer({ src, handleOnClick }) {
   return (
-    <Background>
+    <Background onClick={handleOnClick}>
       <div style={{ position: "relative" }}>
         <ButtonContainer>
-          <CloseButton onClick={handleOnClick}>
+          <CloseButton>
             <FaTimes />
           </CloseButton>
         </ButtonContainer>
