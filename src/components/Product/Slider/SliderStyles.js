@@ -6,9 +6,13 @@ export const StyledSlider = styled(Slider)`
     padding: 0.5rem;
   }
   .slick-list {
-    margin: 0.5rem -0.5rem;
+    margin: 1rem -0.5rem -1rem -0.5rem;
     & > div {
       margin-left: 0;
+      & img {
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+      }
     }
   }
   .slick-prev,
@@ -18,11 +22,13 @@ export const StyledSlider = styled(Slider)`
     z-index: 10;
     &::before {
       font-size: 1.8rem;
-      color: #3a3a3a;
+      color: #3d98b9;
     }
-    &:hover {
-      &::before {
-        color: #3d98b9;
+    @media (hover: hover) {
+      &:hover {
+        &::before {
+          color: #3d98b9;
+        }
       }
     }
   }
