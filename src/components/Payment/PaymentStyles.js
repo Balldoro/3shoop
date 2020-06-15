@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   background-color: #fafafa;
@@ -92,7 +91,7 @@ export const Input = styled.input`
   background-color: #fdfdfd;
   width: 100%;
   padding: 14px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   border-radius: 5px;
   font-size: 1.1rem;
   box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.1);
@@ -100,12 +99,13 @@ export const Input = styled.input`
 
 export const FieldContainer = styled.div`
   width: 100%;
+  margin-bottom: 1.5rem;
   @media (min-width: 620px) {
     width: 50%;
   }
 `;
 
-export const NextLink = styled(Link)`
+export const Submit = styled.button`
   border: none;
   background-color: #3d98b9;
   color: #fff;
@@ -114,12 +114,12 @@ export const NextLink = styled(Link)`
   font-size: 1.4rem;
   margin: 1.5rem 0;
   width: 100%;
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   @media (min-width: 620px) {
     width: 25%;
   }
+`;
+
+export const FormWarning = styled.span`
+  color: #d61f1f;
 `;

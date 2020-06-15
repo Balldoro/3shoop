@@ -1,48 +1,83 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   ProgressTitle,
   Form,
   Label,
   Input,
   FieldContainer,
-  NextLink
+  Submit,
+  FormWarning
 } from "../PaymentStyles";
+import { useHistory } from "react-router-dom";
+import { useForm, ErrorMessage } from "react-hook-form";
 
 function Details() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
+  const { register, handleSubmit, errors } = useForm();
+  const history = useHistory();
+
+  const onSubmit = data => {
+    history.push({ pathname: "/payment/billing", state: data });
+  };
+
   return (
     <>
       <ProgressTitle>Details</ProgressTitle>
       <div>
-        <Form>
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <FieldContainer>
             <Label>First name</Label>
             <Input
-              value={firstName}
-              onChange={e => setFirstName(e.target.value)}
+              name="firstName"
+              ref={register({
+                required: "This field is required",
+                pattern: {
+                  value: /^\p{L}+$/u,
+                  message: "Only letters allowed (Unicode included)"
+                }
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="firstName"
+              as={<FormWarning />}
             />
           </FieldContainer>
+
           <FieldContainer>
             <Label>Last name</Label>
             <Input
-              value={lastName}
-              onChange={e => setLastName(e.target.value)}
+              name="lastName"
+              ref={register({
+                required: "This field is required",
+                pattern: {
+                  value: /^\p{L}+$/u,
+                  message: "Only letters allowed (Unicode included)"
+                }
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="lastName"
+              as={<FormWarning />}
             />
           </FieldContainer>
+
           <FieldContainer>
             <Label>E-mail</Label>
-            <Input value={email} onChange={e => setEmail(e.target.value)} />
+            <Input
+              name="email"
+              ref={register({
+                required: "This field is required",
+                pattern: {
+                  value: /\S+@\S+\.\S+/,
+                  message: "Incorrect e-mail format"
+                }
+              })}
+            />
+            <ErrorMessage errors={errors} name="email" as={<FormWarning />} />
           </FieldContainer>
-          <NextLink
-            to={{
-              pathname: "/payment/billing",
-              state: { firstName, lastName, email }
-            }}
-          >
-            Next
-          </NextLink>
+
+          <Submit>Next</Submit>
         </Form>
       </div>
     </>
