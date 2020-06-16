@@ -9,9 +9,10 @@ import {
   Submit
 } from "../PaymentStyles";
 import { useForm, ErrorMessage } from "react-hook-form";
-import { useHistory, Prompt } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { PaymentContext } from "../../../context/PaymentContext";
 import AccessDenied from "../AccessDenied/AccessDenied";
+import LeavePrompt from "../LeavePrompt/LeavePrompt";
 
 function Billing() {
   const { register, handleSubmit, errors } = useForm();
@@ -21,17 +22,12 @@ function Billing() {
     history.push("/payment/summary");
     updateState(state => ({ ...state, ...data }));
   };
+
   return (
     <>
       {Object.entries(state).length !== 0 ? (
         <>
-          <Prompt
-            message={(location, action) => {
-              return !location.pathname.startsWith("/payment")
-                ? `Are you sure you want to leave? You will lost all of your data`
-                : true;
-            }}
-          />
+          <LeavePrompt />
           <ProgressTitle>Billing</ProgressTitle>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <FieldContainer>
