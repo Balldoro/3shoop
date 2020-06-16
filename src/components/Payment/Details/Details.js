@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   ProgressTitle,
   Form,
@@ -10,13 +10,16 @@ import {
 } from "../PaymentStyles";
 import { useHistory } from "react-router-dom";
 import { useForm, ErrorMessage } from "react-hook-form";
+import { PaymentContext } from "../../../context/PaymentContext";
 
 function Details() {
   const { register, handleSubmit, errors } = useForm();
   const history = useHistory();
+  const { updateState } = useContext(PaymentContext);
 
   const onSubmit = data => {
-    history.push({ pathname: "/payment/billing", state: data });
+    history.push("/payment/billing");
+    updateState(state => ({ ...state, ...data }));
   };
 
   return (
