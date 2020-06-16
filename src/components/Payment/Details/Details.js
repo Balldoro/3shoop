@@ -15,7 +15,7 @@ import { PaymentContext } from "../../../context/PaymentContext";
 function Details() {
   const { register, handleSubmit, errors } = useForm();
   const history = useHistory();
-  const { updateState } = useContext(PaymentContext);
+  const { state, updateState } = useContext(PaymentContext);
 
   const onSubmit = data => {
     history.push("/payment/billing");
@@ -31,6 +31,7 @@ function Details() {
             <Label>First name</Label>
             <Input
               name="firstName"
+              defaultValue={state.firstName || ""}
               ref={register({
                 required: "This field is required",
                 pattern: {
@@ -50,6 +51,7 @@ function Details() {
             <Label>Last name</Label>
             <Input
               name="lastName"
+              defaultValue={state.lastName || ""}
               ref={register({
                 required: "This field is required",
                 pattern: {
@@ -69,6 +71,7 @@ function Details() {
             <Label>E-mail</Label>
             <Input
               name="email"
+              defaultValue={state.email || ""}
               ref={register({
                 required: "This field is required",
                 pattern: {

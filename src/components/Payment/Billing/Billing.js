@@ -31,6 +31,7 @@ function Billing() {
               <Label>Name on card</Label>
               <Input
                 name="cardName"
+                defaultValue={state.cardName || ""}
                 type="text"
                 placeholder="John Doe"
                 ref={register({
@@ -52,6 +53,7 @@ function Billing() {
               <Label>Card number</Label>
               <Input
                 name="cardNumber"
+                defaultValue={state.cardNumber || ""}
                 placeholder="XXXX XXXX XXXX XXXX"
                 ref={register({
                   required: "This field is required",
@@ -74,6 +76,7 @@ function Billing() {
                 <div>
                   <Input
                     name="cardDate.mm"
+                    defaultValue={(state.cardDate && state.cardDate.mm) || ""}
                     type="number"
                     placeholder="MM"
                     ref={register({
@@ -94,6 +97,7 @@ function Billing() {
                 <div>
                   <Input
                     name="cardDate.yy"
+                    defaultValue={(state.cardDate && state.cardDate.yy) || ""}
                     type="number"
                     placeholder="YY"
                     ref={register({
@@ -116,6 +120,7 @@ function Billing() {
               <Label>CVC</Label>
               <Input
                 name="cardCVC"
+                defaultValue={state.cardCVC || ""}
                 placeholder="XXX"
                 type="number"
                 ref={register({
