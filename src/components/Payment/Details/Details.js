@@ -8,7 +8,7 @@ import {
   Submit,
   FormWarning
 } from "../PaymentStyles";
-import { useHistory } from "react-router-dom";
+import { useHistory, Prompt } from "react-router-dom";
 import { useForm, ErrorMessage } from "react-hook-form";
 import { PaymentContext } from "../../../context/PaymentContext";
 
@@ -24,6 +24,13 @@ function Details() {
 
   return (
     <>
+      <Prompt
+        message={location => {
+          return !location.pathname.startsWith("/payment")
+            ? `Are you sure you want to leave? You will lost all of your data`
+            : true;
+        }}
+      />
       <ProgressTitle>Details</ProgressTitle>
       <div>
         <Form onSubmit={handleSubmit(onSubmit)}>

@@ -9,7 +9,7 @@ import {
   Submit
 } from "../PaymentStyles";
 import { useForm, ErrorMessage } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+import { useHistory, Prompt } from "react-router-dom";
 import { PaymentContext } from "../../../context/PaymentContext";
 import AccessDenied from "../AccessDenied/AccessDenied";
 
@@ -25,6 +25,13 @@ function Billing() {
     <>
       {Object.entries(state).length !== 0 ? (
         <>
+          <Prompt
+            message={(location, action) => {
+              return !location.pathname.startsWith("/payment")
+                ? `Are you sure you want to leave? You will lost all of your data`
+                : true;
+            }}
+          />
           <ProgressTitle>Billing</ProgressTitle>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <FieldContainer>
