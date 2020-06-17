@@ -73,11 +73,20 @@ export const ProgressTitle = styled.h2`
   font-weight: 400;
 `;
 
+export const FormWrapper = styled.div`
+  width: 100%;
+  @media (min-width: 620px) {
+    width: 50%;
+    margin: 0 auto;
+  }
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
+  padding: 15px;
 `;
 
 export const Label = styled.label`
@@ -100,9 +109,6 @@ export const Input = styled.input`
 export const FieldContainer = styled.div`
   width: 100%;
   margin-bottom: 1.5rem;
-  @media (min-width: 620px) {
-    width: 50%;
-  }
 `;
 
 export const Submit = styled.button`
@@ -116,10 +122,37 @@ export const Submit = styled.button`
   width: 100%;
   cursor: pointer;
   @media (min-width: 620px) {
-    width: 25%;
+    width: 50%;
   }
+`;
+
+export const SubmitContainer = styled.div`
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
 `;
 
 export const FormWarning = styled.span`
   color: #d61f1f;
+`;
+
+export const MultipleFieldsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  @media (min-width: 620px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
+
+export const MultipleInputsWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 130px;
+  @media (min-width: 620px) {
+    width: 95%;
+  }
 `;

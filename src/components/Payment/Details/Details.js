@@ -6,7 +6,8 @@ import {
   Input,
   FieldContainer,
   Submit,
-  FormWarning
+  FormWarning,
+  FormWrapper
 } from "../PaymentStyles";
 import { useHistory } from "react-router-dom";
 import { useForm, ErrorMessage } from "react-hook-form";
@@ -19,15 +20,15 @@ function Details() {
   const { state, updateState } = useContext(PaymentContext);
 
   const onSubmit = data => {
-    history.push("/payment/billing");
     updateState(state => ({ ...state, ...data }));
+    history.push("/payment/billing");
   };
 
   return (
     <>
       <LeavePrompt />
       <ProgressTitle>Details</ProgressTitle>
-      <div>
+      <FormWrapper>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <FieldContainer>
             <Label>First name</Label>
@@ -87,7 +88,7 @@ function Details() {
 
           <Submit>Next</Submit>
         </Form>
-      </div>
+      </FormWrapper>
     </>
   );
 }
