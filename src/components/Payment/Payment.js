@@ -14,6 +14,7 @@ import Billing from "./Billing/Billing";
 import AccessDenied from "./AccessDenied/AccessDenied";
 import PaymentContextProvider from "../../context/PaymentContext";
 import Summary from "./Summary/Summary";
+import Finish from "./Finish/Finish";
 
 function Payment() {
   const { itemsInCart } = useContext(CartContext);
@@ -33,18 +34,22 @@ function Payment() {
                 active={url === "/payment/billing"}
                 done={url !== "/payment/details" && url !== "/payment/billing"}
               />
-              <ProgressCircle active={url === "/payment/summary"} />
+              <ProgressCircle
+                active={url === "/payment/summary"}
+                done={url === "/payment/finish"}
+              />
             </ProgressCirclesContainer>
             <ProgressOutLine></ProgressOutLine>
           </ProgressContainer>
-          {itemsInCart.length !== 0 ? (
+          {itemsInCart.length === 0 && url !== "/payment/finish" ? (
+            <AccessDenied />
+          ) : (
             <>
+              <Route path="/payment/finish" component={Finish} />
               <Route path="/payment/details" component={Details} />
               <Route path="/payment/billing" component={Billing} />
               <Route path="/payment/summary" component={Summary} />
             </>
-          ) : (
-            <AccessDenied />
           )}
         </BlockContainer>
       </Wrapper>
