@@ -31,8 +31,11 @@ function Billing() {
   const { register, handleSubmit, errors } = useForm();
   const history = useHistory();
   const { state, updateState } = useContext(PaymentContext);
-  const [paymentOption, setPaymentOption] = useState(null);
+  const [paymentOption, setPaymentOption] = useState(
+    state.paymentOption || null
+  );
   const onSubmit = data => {
+    data.paymentOption = paymentOption;
     updateState(state => ({ ...state, ...data }));
     history.push("/payment/summary");
   };
@@ -139,7 +142,7 @@ function Billing() {
                             ref={register({
                               required: "This field is required",
                               pattern: {
-                                value: /\d{2}(?:\d{2})?/,
+                                value: /^\d{2}(?:\d{2})?$/,
                                 message: "Incorrect value"
                               }
                             })}
