@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Wrapper = styled.div`
   background-color: #fafafa;
   min-height: calc(100vh - 55px);
+  padding-bottom: 1.5rem;
 `;
 
 export const ProgressContainer = styled.div`
@@ -126,6 +128,25 @@ export const Submit = styled.button`
   }
 `;
 
+export const NextLink = styled(Link)`
+  border: none;
+  background-color: #3d98b9;
+  color: #fff;
+  height: 60px;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  margin: 1.5rem auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  @media (min-width: 620px) {
+    width: 50%;
+  }
+`;
+
 export const SubmitContainer = styled.div`
   width: 50%;
   margin: 0 auto;
@@ -143,7 +164,6 @@ export const MultipleFieldsWrapper = styled.div`
   @media (min-width: 620px) {
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
   }
 `;
 

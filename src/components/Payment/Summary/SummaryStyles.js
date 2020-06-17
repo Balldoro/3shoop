@@ -43,25 +43,14 @@ export const OrderTotal = styled.div`
   margin-top: 1rem;
 `;
 
-export const OrderButton = styled.button`
-  background-color: #3d98b9;
-  color: #fff;
-  width: 40%;
-  height: 65px;
-  font-size: 1.05rem;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 0 auto;
-  border: 1px solid #3d98b9;
-  display: block;
-  margin-top: 2rem;
-`;
-
 export const PersonalItemWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   padding: 15px 0;
-  align-items: center;
   border-bottom: 1px solid #f3f3f3;
+  @media (min-width: 620px) {
+    flex-direction: row;
+  }
 `;
 
 export const PersonalHeading = styled.h4`
