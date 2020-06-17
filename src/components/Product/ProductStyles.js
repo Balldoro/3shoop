@@ -5,6 +5,7 @@ export const Wrapper = styled.section`
   color: #3a3a3a;
   min-height: calc(100vh - 55px);
   padding: 1rem 0;
+  padding-bottom: 75px;
 `;
 
 export const ModelViewer = styled.div`
@@ -41,7 +42,7 @@ export const PurchaseContainer = styled.div`
   align-items: center;
   height: 75px;
   padding: 0 2.5%;
-  z-index: 10;
+  z-index: 20;
   background-color: #3a3a3a;
   @media (min-width: 620px) {
     position: static;
@@ -77,12 +78,16 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
+export const ProductInfo = styled.section`
+  margin: 1rem 0;
+`;
+
 export const ProductSubTitle = styled.h3`
   font-weight: 400;
   font-size: 1.35rem;
   border-bottom: 2px solid #3d98b9;
   padding-bottom: 0.25rem;
-  margin: 0.35rem 0;
+  margin: 0.5rem 0;
   display: inline-block;
 `;
 
