@@ -13,6 +13,7 @@ import Details from "./Details/Details";
 import Billing from "./Billing/Billing";
 import AccessDenied from "./AccessDenied/AccessDenied";
 import PaymentContextProvider from "../../context/PaymentContext";
+import Summary from "./Summary/Summary";
 
 function Payment() {
   const { itemsInCart } = useContext(CartContext);
@@ -40,6 +41,7 @@ function Payment() {
             <>
               <Route path="/payment/details" component={Details} />
               <Route path="/payment/billing" component={Billing} />
+              <Route path="/payment/summary" component={Summary} />
             </>
           ) : (
             <AccessDenied />
