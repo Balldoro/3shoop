@@ -16,7 +16,7 @@ import {
   fetchStorageURL
 } from "../../helpers/firabaseFunctions";
 import { CartContext } from "../../context/CartContext";
-import ProductModel from "./ProductModel";
+import ProductModel from "./ProductModel/ProductModel";
 import Slider from "./Slider/Slider";
 import ImageViewer from "./ImageViewer/ImageViewer";
 

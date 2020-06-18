@@ -7,14 +7,15 @@ import {
   Settings,
   SettingsButton,
   SettingsButtonTip
-} from "./ProductStyles";
-import Spinner from "./Spinner/Spinner";
+} from "./ProductModelStyles";
+import Spinner from "../Spinner/Spinner";
 import { MdFullscreen, MdExtension } from "react-icons/md";
 
 function ProductModel(model) {
   const cnv = createRef();
   const spinner = createRef();
   const [isWireframe, setIsWireframe] = useState(false);
+
   useEffect(() => {
     const modelContainer = cnv.current;
     let cnvWidth = modelContainer.clientWidth;
@@ -182,9 +183,7 @@ function ProductModel(model) {
         </SettingsButton>
         <SettingsButton onClick={() => setIsWireframe(!isWireframe)}>
           <MdExtension
-            style={
-              isWireframe ? { backgroundColor: "#3d98b9", color: "#fff" } : {}
-            }
+            style={isWireframe && { backgroundColor: "#3d98b9", color: "#fff" }}
           />
           <SettingsButtonTip>Wireframe</SettingsButtonTip>
         </SettingsButton>
