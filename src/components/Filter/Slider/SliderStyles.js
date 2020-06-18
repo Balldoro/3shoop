@@ -45,3 +45,20 @@ export const CustomSlider = styled(createSliderWithTooltip(Range))`
     bottom: -4px;
   }
 `;
+
+export const PriceManualBoxesContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0 0 0;
+`;
+
+export const PriceManualBox = styled.input`
+  position: relative;
+  padding: 12px 0;
+  border: 2px solid #9fd3e6;
+  border-radius: 5px;
+  width: 40%;
+  text-align: center;
+  font-size: 1.05rem;
+  background-color: #f9fdff;
+`;

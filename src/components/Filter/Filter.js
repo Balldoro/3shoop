@@ -9,29 +9,30 @@ import {
   Checkbox,
   ActionButtonsContainer,
   SendButton,
-  PriceManualBoxesContainer,
-  PriceManualBox,
   CategoriesContainer,
   FilterContent
 } from "./FilterStyles";
 import { SectionTitle, BlockContainer } from "../../GlobalStyles";
 import useVisibleComponent from "../../hooks/useVisibleComponent";
 import "rc-slider/assets/index.css";
-import Slider from "../Slider/Slider";
+import Slider from "./Slider/Slider";
 import { db } from "../../firebase/index";
 import { convertToProductObjectsFrom } from "../../helpers/firabaseFunctions";
 
 function Filter({ match, updateItems }) {
   const [isActive, setIsActive] = useState(false);
-  const [priceRangeFilter, setPriceRangeFilter] = useState([0, 1000]);
+  const [priceRangeFilter, setPriceRangeFilter] = useState([0, 200]);
   const [animatedFilter, setAnimatedFilter] = useState(false);
   const filterContainer = createRef();
+
   const removeActive = () => {
     setIsActive(false);
   };
+
   const updatePriceRangeFilter = values => {
     setPriceRangeFilter(values);
   };
+
   const filterItems = async () => {
     const collection = await db
       .collection(match.params.slug)
@@ -70,28 +71,10 @@ function Filter({ match, updateItems }) {
               </Category>
               <Category>
                 <CategoryTitle>Price</CategoryTitle>
-                <form>
-                  <Slider
-                    value={priceRangeFilter}
-                    handleChange={updatePriceRangeFilter}
-                  />
-                  <PriceManualBoxesContainer>
-                    <PriceManualBox
-                      placeholder="min"
-                      min="0"
-                      max="1000"
-                      value={priceRangeFilter[0]}
-                      readOnly
-                    />
-                    <PriceManualBox
-                      placeholder="max"
-                      min="0"
-                      max="1000"
-                      value={priceRangeFilter[1]}
-                      readOnly
-                    />
-                  </PriceManualBoxesContainer>
-                </form>
+                <Slider
+                  priceRange={priceRangeFilter}
+                  handleChange={updatePriceRangeFilter}
+                />
               </Category>
               <ActionButtonsContainer>
                 <ToggleButton onClick={() => setIsActive(false)}>
