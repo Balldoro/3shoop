@@ -21,9 +21,22 @@ function CartContextProvider({ children }) {
     setItemsInCart(filteredCart);
   };
 
+  const getTotalPrice = () => {
+    return itemsInCart
+      .map(item => item.price)
+      .reduce((total, curr) => (total += curr))
+      .toFixed(2);
+  };
+
   return (
     <CartContext.Provider
-      value={{ itemsInCart, addItemToCart, deleteItemFromCart, setItemsInCart }}
+      value={{
+        itemsInCart,
+        addItemToCart,
+        deleteItemFromCart,
+        setItemsInCart,
+        getTotalPrice
+      }}
     >
       {children}
     </CartContext.Provider>

@@ -17,7 +17,9 @@ import LeavePrompt from "../LeavePrompt/LeavePrompt";
 
 function Summary() {
   const { state, updateState } = useContext(PaymentContext);
-  const { itemsInCart, setItemsInCart } = useContext(CartContext);
+  const { itemsInCart, setItemsInCart, getTotalPrice } = useContext(
+    CartContext
+  );
 
   const handleOnClick = () => {
     updateState({});
@@ -64,13 +66,7 @@ function Summary() {
                   </OrderItem>
                 ))}
               </ul>
-              <OrderTotal>
-                Total: $
-                {itemsInCart
-                  .map(item => item.price)
-                  .reduce((total, curr) => (total += curr))
-                  .toFixed(2)}
-              </OrderTotal>
+              <OrderTotal>Total: ${getTotalPrice()}</OrderTotal>
             </SectionWrapper>
           </SummaryWrapper>
           <NextLink to="/payment/finish" onClick={handleOnClick}>

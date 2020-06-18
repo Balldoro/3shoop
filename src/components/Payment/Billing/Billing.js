@@ -96,7 +96,6 @@ function Billing() {
                         }
                       })}
                     />
-                    {console.log(errors)}
                     <ErrorMessage
                       errors={errors}
                       name="cardNumber"

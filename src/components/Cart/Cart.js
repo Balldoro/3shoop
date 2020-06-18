@@ -24,7 +24,9 @@ function Cart() {
     setIsActive(false);
   };
   useVisibleComponent(cartContent, removeActive);
-  const { itemsInCart, deleteItemFromCart } = useContext(CartContext);
+  const { itemsInCart, deleteItemFromCart, getTotalPrice } = useContext(
+    CartContext
+  );
   return (
     <div ref={cartContent}>
       <CartButton
@@ -61,13 +63,7 @@ function Cart() {
                   </CartItem>
                 ))}
               </ul>
-              <TotalPrice>
-                Total: $
-                {itemsInCart
-                  .map(item => item.price)
-                  .reduce((total, item) => (total += item))
-                  .toFixed(2)}
-              </TotalPrice>
+              <TotalPrice>Total: ${getTotalPrice()}</TotalPrice>
               <BuyLink to="/payment/details" onClick={() => setIsActive(false)}>
                 BUY!
               </BuyLink>
