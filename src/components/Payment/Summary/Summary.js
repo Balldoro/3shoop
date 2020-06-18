@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { PaymentContext } from "../../../context/PaymentContext";
-import { ProgressTitle } from "../PaymentStyles";
+import { ProgressTitle, NextLink } from "../PaymentStyles";
 import { CartContext } from "../../../context/CartContext";
 import {
   SummaryTitle,
@@ -9,19 +9,26 @@ import {
   SummaryWrapper,
   OrderTotal,
   SectionWrapper,
-  OrderButton,
   PersonalItemWrapper,
   PersonalHeading
 } from "./SummaryStyles";
 import AccessDenied from "../AccessDenied/AccessDenied";
+import LeavePrompt from "../LeavePrompt/LeavePrompt";
 
 function Summary() {
-  const { state } = useContext(PaymentContext);
-  const { itemsInCart } = useContext(CartContext);
+  const { state, updateState } = useContext(PaymentContext);
+  const { itemsInCart, setItemsInCart } = useContext(CartContext);
+
+  const handleOnClick = () => {
+    updateState({});
+    setItemsInCart([]);
+  };
+
   return (
     <>
       {Object.entries(state).length !== 0 ? (
         <>
+          <LeavePrompt />
           <ProgressTitle>Summary</ProgressTitle>
           <SummaryWrapper>
             <SectionWrapper>
@@ -66,7 +73,9 @@ function Summary() {
               </OrderTotal>
             </SectionWrapper>
           </SummaryWrapper>
-          <OrderButton>ORDER</OrderButton>
+          <NextLink to="/payment/finish" onClick={handleOnClick}>
+            ORDER
+          </NextLink>
         </>
       ) : (
         <AccessDenied />
