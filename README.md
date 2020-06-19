@@ -8,7 +8,7 @@ Website is fully responsive, built with mobile-first approach.
 
 ## Setup
 
-Live version: [Live](https://balldoro.github.io/covid/#/global)
+Live version: [Live](https://balldoro.github.io/3shoop/#/)
 
 ### Prerequisites
 
