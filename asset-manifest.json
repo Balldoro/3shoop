@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.js": "/3shoop/static/js/main.3978e521.chunk.js",
+    "main.js.map": "/3shoop/static/js/main.3978e521.chunk.js.map",
+    "runtime-main.js": "/3shoop/static/js/runtime-main.63b23f18.js",
+    "runtime-main.js.map": "/3shoop/static/js/runtime-main.63b23f18.js.map",
+    "static/css/2.9e6647f0.chunk.css": "/3shoop/static/css/2.9e6647f0.chunk.css",
+    "static/js/2.31199e65.chunk.js": "/3shoop/static/js/2.31199e65.chunk.js",
+    "static/js/2.31199e65.chunk.js.map": "/3shoop/static/js/2.31199e65.chunk.js.map",
+    "index.html": "/3shoop/index.html",
+    "precache-manifest.f2839d5556450b7210527d1519d48c60.js": "/3shoop/precache-manifest.f2839d5556450b7210527d1519d48c60.js",
+    "service-worker.js": "/3shoop/service-worker.js",
+    "static/css/2.9e6647f0.chunk.css.map": "/3shoop/static/css/2.9e6647f0.chunk.css.map",
+    "static/js/2.31199e65.chunk.js.LICENSE.txt": "/3shoop/static/js/2.31199e65.chunk.js.LICENSE.txt",
+    "static/media/Visa.svg": "/3shoop/static/media/Visa.b1684820.svg",
+    "static/media/hero.jpg": "/3shoop/static/media/hero.2ee2f846.jpg",
+    "static/media/mc_symbol.svg": "/3shoop/static/media/mc_symbol.543bc93b.svg",
+    "static/media/slick-theme.css": "/3shoop/static/media/slick.f97e3bbf.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.63b23f18.js",
+    "static/css/2.9e6647f0.chunk.css",
+    "static/js/2.31199e65.chunk.js",
+    "static/js/main.3978e521.chunk.js"
+  ]
+}
