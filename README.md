@@ -1,68 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 3SHOOP
 
-## Available Scripts
+## General Info
 
-In the project directory, you can run:
+3Shoop is an e-commerce website with 3D models. Every product contains its 3D model view with a wireframe and slider with photos.
+In order to buy chosen products, user goes through the whole payment process on a client-side.
+Website is fully responsive, built with mobile-first approach.
 
-### `npm start`
+## Setup
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Live version: [Live](https://balldoro.github.io/covid/#/global)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+To install this project locally you need to have
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node >= v8.10
+- npm >= v5.6
 
-### `npm run build`
+### Installation
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone or download repository
+2. Go to repository location
+3. Install dependencies via npm `$ npm install`
+4. Run it on your local server in the development mode [http://localhost:3000](http://localhost:3000) `$ npm start`<br />
+   Or build the app in the production mode `$ npm run build`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+## Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Different categories of products
+- Filtering products in selected category
+- Sorting products in selected category
+- 3D model view for every product
+- Fullscreen for 3D model viewer
+- Possibility to turn on/off wireframe of 3D model
+- Slider with images of product
+- Adding/Removing each product to cart
+- Cart containing chosen products in LocalStorage
+- Multi-step (4 steps) payment form with full validation
+  1. Personal data
+  2. Card data
+  3. Summary
+- Prompt before the user leaves the page if payment transaction is not finished
+- Denial of access to further steps without fulfilling the prior ones
 
-### `npm run eject`
+## Technologies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- React v16.13.1
+- Creat-React-App
+- Styled Components v5.1.1
+- Three.js v0.117.1
+- Firebase v7.14.6
+- React Hook Form v5.7.2
+- react-icons v3.10.0
+- react-router-dom v5.2.0
+- react-slick v0.26.1
+- rc-slider v9.3.0
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Author
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Created with :heart: by Marek Miklaszewski
