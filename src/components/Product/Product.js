@@ -95,12 +95,16 @@ function Product({ match: { params }, location: { state } }) {
               />
             )}
             <ProductInfo>
-              <ProductSubTitle>Description</ProductSubTitle>
-              <ProductText>{product.description}</ProductText>
-            </ProductInfo>
-            <ProductInfo>
               <ProductSubTitle>Credits</ProductSubTitle>
-              <ProductText>Created by Danov Abramov</ProductText>
+              <ProductText>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={product.credits}
+                >
+                  {product.credits}
+                </a>
+              </ProductText>
             </ProductInfo>
           </>
         ) : null}

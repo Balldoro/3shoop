@@ -28,9 +28,9 @@ export const fetchStorageURL = async ref => {
 export const convertToProductObjectsFrom = async collection => {
   const items = await Promise.all(
     collection.docs.map(async doc => {
-      const { name, price, imgRef, modelRef, description } = doc.data();
+      const { name, price, imgRef, modelRef, credits } = doc.data();
       const img = await fetchStorageURL(imgRef[0]);
-      return { name, price, img, imgRef, modelRef, description, id: doc.id };
+      return { name, price, img, imgRef, modelRef, credits, id: doc.id };
     })
   );
   return items;

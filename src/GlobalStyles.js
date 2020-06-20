@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
     }
     a {
         text-transform: none;
-        color: transparent;
+        color: inherit;
     }
     img {
         max-width: 100%;
