@@ -20,7 +20,7 @@ import ImageViewer from "./ImageViewer/ImageViewer";
 function Product({ match: { params }, location: { state } }) {
   const [product, setProduct] = useState({});
   const [viewImageSrc, setViewImageSrc] = useState(null);
-  const { itemsInCart, addItemToCart, deleteItemFromCart } = useContext(
+  const { addItemToCart, deleteItemFromCart, checkIfItemIsInCart } = useContext(
     CartContext
   );
 
@@ -54,8 +54,7 @@ function Product({ match: { params }, location: { state } }) {
             <ProductTitle>{product.name}</ProductTitle>
             <PurchaseContainer>
               <ProductPrice>${product.price.toFixed(2)}</ProductPrice>
-              {itemsInCart.filter(item => item.id === product.id).length !==
-              0 ? (
+              {checkIfItemIsInCart(product.id) ? (
                 <Button onClick={() => deleteItemFromCart(product)}>
                   Remove from cart
                 </Button>

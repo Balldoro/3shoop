@@ -28,6 +28,10 @@ function CartContextProvider({ children }) {
       .toFixed(2);
   };
 
+  const checkIfItemIsInCart = itemID => {
+    return itemsInCart.filter(cartItem => cartItem.id === itemID).length !== 0;
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -35,7 +39,8 @@ function CartContextProvider({ children }) {
         addItemToCart,
         deleteItemFromCart,
         setItemsInCart,
-        getTotalPrice
+        getTotalPrice,
+        checkIfItemIsInCart
       }}
     >
       {children}
