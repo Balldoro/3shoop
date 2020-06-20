@@ -9,6 +9,7 @@ export const ModelViewer = styled.div`
     display: block;
     width: 100% !important;
     height: 100% !important;
+    cursor: grab;
   }
 `;
 
