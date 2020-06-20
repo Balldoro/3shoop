@@ -35,3 +35,13 @@ export const convertToProductObjectsFrom = async collection => {
   );
   return items;
 };
+
+export const fetchProduct = async (category, product) => {
+  const collection = category;
+  const doc = product;
+  const item = await fetchItemFromCollection(collection, doc);
+  item.img = await fetchStorageURL(item.imgRef);
+  item.model = await fetchStorageURL(item.modelRef);
+  item.path = `${category}/${product}`;
+  return item;
+};
