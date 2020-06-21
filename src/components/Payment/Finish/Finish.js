@@ -9,7 +9,7 @@ function Finish() {
       <Icon>
         <FaCheck />
       </Icon>
-      <h2>Transaction successfull!</h2>
+      <h1>Transaction successfull!</h1>
       <NextLink to="/">Back to Home page</NextLink>
     </Wrapper>
   );

@@ -32,7 +32,7 @@ export const Category = styled.section`
   position: relative;
 `;
 
-export const CategoryTitle = styled.h2`
+export const CategoryTitle = styled.h3`
   font-weight: 400;
   font-size: 1.8rem;
   color: #fff;

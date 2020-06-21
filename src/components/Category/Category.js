@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { BlockContainer, SectionTitle, Grid } from "../../GlobalStyles";
-import { ProductInfo, Product, OptionsContainer } from "./CategoryStyles";
+import { BlockContainer, Grid } from "../../GlobalStyles";
+import {
+  ProductInfo,
+  Product,
+  OptionsContainer,
+  Title
+} from "./CategoryStyles";
 import { Link } from "react-router-dom";
 import {
   fetchCollection,
@@ -20,8 +25,8 @@ function Category({ match }) {
     fetchItems();
   }, [match]);
   return (
-    <section style={{ position: "relative" }}>
-      <SectionTitle>{match.params.slug}</SectionTitle>
+    <main style={{ position: "relative" }}>
+      <Title>{match.params.slug}</Title>
       <BlockContainer>
         <OptionsContainer>
           <Filter match={match} updateItems={setItems} />
@@ -48,7 +53,7 @@ function Category({ match }) {
             : null}
         </Grid>
       </BlockContainer>
-    </section>
+    </main>
   );
 }
 export default Category;

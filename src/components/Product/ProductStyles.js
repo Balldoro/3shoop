@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.main`
   background-color: #fafafa;
   color: #3a3a3a;
   min-height: calc(100vh - 55px);
@@ -8,14 +8,14 @@ export const Wrapper = styled.section`
   padding-bottom: 75px;
 `;
 
-export const ProductHeader = styled.div`
+export const ProductHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
 `;
 
-export const ProductTitle = styled.h2`
+export const ProductTitle = styled.h1`
   font-size: 1.85rem;
   font-weight: 400;
 `;
@@ -66,11 +66,11 @@ export const Button = styled.button`
   cursor: pointer;
 `;
 
-export const ProductInfo = styled.section`
+export const ProductInfo = styled.article`
   margin: 1rem 0;
 `;
 
-export const ProductSubTitle = styled.h3`
+export const ProductSubTitle = styled.h2`
   font-weight: 400;
   font-size: 1.35rem;
   border-bottom: 2px solid #3d98b9;

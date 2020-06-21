@@ -87,7 +87,7 @@ function Product({ match: { params }, location: { state } }) {
             <ProductText>
               <a
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer external"
                 href={product.credits}
               >
                 {product.credits}

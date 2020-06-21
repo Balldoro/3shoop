@@ -33,6 +33,7 @@ function Details() {
           <FieldContainer>
             <Label>First name</Label>
             <Input
+              type="text"
               name="firstName"
               defaultValue={state.firstName || ""}
               ref={register({
@@ -53,6 +54,7 @@ function Details() {
           <FieldContainer>
             <Label>Last name</Label>
             <Input
+              type="text"
               name="lastName"
               defaultValue={state.lastName || ""}
               ref={register({
@@ -73,6 +75,7 @@ function Details() {
           <FieldContainer>
             <Label>E-mail</Label>
             <Input
+              type="email"
               name="email"
               defaultValue={state.email || ""}
               ref={register({

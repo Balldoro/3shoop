@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.main`
   background-color: #fafafa;
   min-height: calc(100vh - 55px);
   padding-bottom: 1.5rem;
@@ -67,7 +67,7 @@ export const ProgressCircle = styled.div`
   }
 `;
 
-export const ProgressTitle = styled.h2`
+export const ProgressTitle = styled.h1`
   color: #3d98b9;
   font-size: 2.2rem;
   margin-bottom: 2rem;

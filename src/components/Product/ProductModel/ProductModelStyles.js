@@ -21,7 +21,7 @@ export const Settings = styled.div`
   display: flex;
 `;
 
-export const SettingsButton = styled.div`
+export const SettingsButton = styled.button`
   position: relative;
   border: none;
   background-color: transparent;
@@ -63,6 +63,7 @@ export const SettingsButtonTip = styled.span`
   width: 100px;
   text-align: center;
   padding: 5px;
+  font-size: 1rem;
   &::after {
     content: "";
     display: block;

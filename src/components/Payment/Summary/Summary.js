@@ -10,7 +10,7 @@ import {
   OrderTotal,
   SectionWrapper,
   PersonalItemWrapper,
-  PersonalHeading
+  ItemHeading
 } from "./SummaryStyles";
 import AccessDenied from "../AccessDenied/AccessDenied";
 import LeavePrompt from "../LeavePrompt/LeavePrompt";
@@ -35,33 +35,35 @@ function Summary() {
           <SummaryWrapper>
             <SectionWrapper>
               <SummaryTitle>Personal data</SummaryTitle>
-              <PersonalItemWrapper>
-                <PersonalHeading>First name: </PersonalHeading>
-                <OrderItemText>{state.firstName}</OrderItemText>
-              </PersonalItemWrapper>
-              <PersonalItemWrapper>
-                <PersonalHeading>Last name: </PersonalHeading>
-                <OrderItemText>{state.lastName}</OrderItemText>
-              </PersonalItemWrapper>
-              <PersonalItemWrapper>
-                <PersonalHeading>Email: </PersonalHeading>
-                <OrderItemText>{state.email}</OrderItemText>
-              </PersonalItemWrapper>
-              <PersonalItemWrapper>
-                <PersonalHeading>Cardholder name: </PersonalHeading>
-                <OrderItemText>{state.cardName}</OrderItemText>
-              </PersonalItemWrapper>
-              <PersonalItemWrapper>
-                <PersonalHeading>Card number: </PersonalHeading>
-                <OrderItemText>{state.cardNumber}</OrderItemText>
-              </PersonalItemWrapper>
+              <ul>
+                <PersonalItemWrapper>
+                  <ItemHeading>First name: </ItemHeading>
+                  <OrderItemText>{state.firstName}</OrderItemText>
+                </PersonalItemWrapper>
+                <PersonalItemWrapper>
+                  <ItemHeading>Last name: </ItemHeading>
+                  <OrderItemText>{state.lastName}</OrderItemText>
+                </PersonalItemWrapper>
+                <PersonalItemWrapper>
+                  <ItemHeading>Email: </ItemHeading>
+                  <OrderItemText>{state.email}</OrderItemText>
+                </PersonalItemWrapper>
+                <PersonalItemWrapper>
+                  <ItemHeading>Cardholder name: </ItemHeading>
+                  <OrderItemText>{state.cardName}</OrderItemText>
+                </PersonalItemWrapper>
+                <PersonalItemWrapper>
+                  <ItemHeading>Card number: </ItemHeading>
+                  <OrderItemText>{state.cardNumber}</OrderItemText>
+                </PersonalItemWrapper>
+              </ul>
             </SectionWrapper>
             <SectionWrapper>
               <SummaryTitle>Order</SummaryTitle>
               <ul>
                 {itemsInCart.map(item => (
                   <OrderItem key={item.id}>
-                    <OrderItemText>{item.name}</OrderItemText>
+                    <ItemHeading>{item.name}</ItemHeading>
                     <OrderItemText>${item.price.toFixed(2)}</OrderItemText>
                   </OrderItem>
                 ))}

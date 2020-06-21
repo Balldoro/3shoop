@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const SummaryTitle = styled.h3`
+export const SummaryTitle = styled.h2`
   font-size: 1.2rem;
   font-weight: 400;
   color: #3d98b9;
@@ -16,7 +16,7 @@ export const SummaryWrapper = styled.div`
   }
 `;
 
-export const SectionWrapper = styled.section`
+export const SectionWrapper = styled.article`
   width: 100%;
   margin-left: auto;
   background-color: #fff;
@@ -43,7 +43,7 @@ export const OrderTotal = styled.div`
   margin-top: 1rem;
 `;
 
-export const PersonalItemWrapper = styled.div`
+export const PersonalItemWrapper = styled.li`
   display: flex;
   flex-direction: column;
   padding: 15px 0;
@@ -53,7 +53,7 @@ export const PersonalItemWrapper = styled.div`
   }
 `;
 
-export const PersonalHeading = styled.h4`
+export const ItemHeading = styled.h3`
   font-size: 1.15rem;
   font-weight: 500;
   margin-right: 1rem;
