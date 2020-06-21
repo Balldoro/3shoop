@@ -70,7 +70,9 @@ function ProductModel(model) {
 
     const loadingManager = new THREE.LoadingManager();
     loadingManager.onLoad = () => {
-      spinner.current.remove();
+      if (spinner.current) {
+        spinner.current.remove();
+      }
     };
     loadingManager.onStart = () => {
       cnv.current.appendChild(spinner.current);
@@ -149,7 +151,6 @@ function ProductModel(model) {
       }
     );
     modelContainer.appendChild(renderer.domElement);
-
     const unmountModelView = () => {
       const stop = () => {
         cancelAnimationFrame(frameID);
@@ -161,7 +162,6 @@ function ProductModel(model) {
         scene.remove(scene.children[0]);
       }
     };
-
     return () => unmountModelView();
   }, [cnv, model, spinner, isWireframe]);
 

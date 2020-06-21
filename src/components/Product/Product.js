@@ -29,6 +29,7 @@ function Product({ match: { params }, location: { state } }) {
   };
 
   useEffect(() => {
+    let isMounted = true;
     const collection = params.slug;
     const doc = params.id;
     const getProductData = async () => {
@@ -43,7 +44,11 @@ function Product({ match: { params }, location: { state } }) {
         setProduct(product);
       }
     };
-    getProductData();
+    if (isMounted) {
+      getProductData();
+    }
+
+    return () => (isMounted = false);
   }, [state, params]);
 
   return (

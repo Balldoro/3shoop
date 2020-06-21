@@ -17,12 +17,16 @@ import Filter from "../Filter/Filter";
 function Category({ match }) {
   const [items, setItems] = useState([]);
   useEffect(() => {
+    let isMounted = true;
     const fetchItems = async () => {
       const collection = await fetchCollection(match.params.slug);
       const items = await convertToProductObjectsFrom(collection);
       setItems(items);
     };
-    fetchItems();
+    if (isMounted) {
+      fetchItems();
+    }
+    return () => (isMounted = false);
   }, [match]);
   return (
     <main style={{ position: "relative" }}>
