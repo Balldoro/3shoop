@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/3shoop/static/js/main.5dcd56ab.chunk.js",
-    "main.js.map": "/3shoop/static/js/main.5dcd56ab.chunk.js.map",
+    "main.js": "/3shoop/static/js/main.36879170.chunk.js",
+    "main.js.map": "/3shoop/static/js/main.36879170.chunk.js.map",
     "runtime-main.js": "/3shoop/static/js/runtime-main.63b23f18.js",
     "runtime-main.js.map": "/3shoop/static/js/runtime-main.63b23f18.js.map",
     "static/css/2.9e6647f0.chunk.css": "/3shoop/static/css/2.9e6647f0.chunk.css",
     "static/js/2.31199e65.chunk.js": "/3shoop/static/js/2.31199e65.chunk.js",
     "static/js/2.31199e65.chunk.js.map": "/3shoop/static/js/2.31199e65.chunk.js.map",
     "index.html": "/3shoop/index.html",
-    "precache-manifest.c77194c8da3c32fe336c08a6b6b6793c.js": "/3shoop/precache-manifest.c77194c8da3c32fe336c08a6b6b6793c.js",
+    "precache-manifest.776ccd3b1882fc492b9b90658efa4f5c.js": "/3shoop/precache-manifest.776ccd3b1882fc492b9b90658efa4f5c.js",
     "service-worker.js": "/3shoop/service-worker.js",
     "static/css/2.9e6647f0.chunk.css.map": "/3shoop/static/css/2.9e6647f0.chunk.css.map",
     "static/js/2.31199e65.chunk.js.LICENSE.txt": "/3shoop/static/js/2.31199e65.chunk.js.LICENSE.txt",
@@ -21,6 +21,6 @@
     "static/js/runtime-main.63b23f18.js",
     "static/css/2.9e6647f0.chunk.css",
     "static/js/2.31199e65.chunk.js",
-    "static/js/main.5dcd56ab.chunk.js"
+    "static/js/main.36879170.chunk.js"
   ]
 }
