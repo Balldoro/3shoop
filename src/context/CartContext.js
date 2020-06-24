@@ -29,7 +29,7 @@ function CartContextProvider({ children }) {
   };
 
   const checkIfItemIsInCart = itemID => {
-    return itemsInCart.filter(cartItem => cartItem.id === itemID).length !== 0;
+    return itemsInCart.some(cartItem => cartItem.id === itemID);
   };
 
   return (
