@@ -12,12 +12,12 @@ import {
   CategoriesContainer,
   FilterContent
 } from "./FilterStyles";
-import { SectionTitle, BlockContainer } from "../../GlobalStyles";
-import useVisibleComponent from "../../hooks/useVisibleComponent";
+import { SectionTitle, BlockContainer } from "../../../GlobalStyles";
+import useVisibleComponent from "../../../hooks/useVisibleComponent";
 import "rc-slider/assets/index.css";
 import Slider from "./Slider/Slider";
-import { db } from "../../firebase/index";
-import { convertToProductObjectsFrom } from "../../helpers/firabaseFunctions";
+import { db } from "../../../firebase/index";
+import { convertToProductObjectsFrom } from "../../../helpers/firabaseFunctions";
 
 function Filter({ collectionToFilter, updateItems }) {
   const [isActive, setIsActive] = useState(false);
