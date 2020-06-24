@@ -19,7 +19,7 @@ import Slider from "./Slider/Slider";
 import { db } from "../../firebase/index";
 import { convertToProductObjectsFrom } from "../../helpers/firabaseFunctions";
 
-function Filter({ match, updateItems }) {
+function Filter({ collectionToFilter, updateItems }) {
   const [isActive, setIsActive] = useState(false);
   const [priceRangeFilter, setPriceRangeFilter] = useState([0, 200]);
   const [animatedFilter, setAnimatedFilter] = useState(false);
@@ -35,7 +35,7 @@ function Filter({ match, updateItems }) {
 
   const filterItems = async () => {
     const collection = await db
-      .collection(match.params.slug)
+      .collection(collectionToFilter)
       .where("price", ">=", priceRangeFilter[0])
       .where("price", "<=", priceRangeFilter[1])
       .where("animated", "==", animatedFilter)
@@ -51,7 +51,7 @@ function Filter({ match, updateItems }) {
         <FaFilter />
         Filters
       </ToggleButton>
-      {isActive ? (
+      {isActive && (
         <FiltersContainer>
           <SectionTitle>Filters</SectionTitle>
           <BlockContainer>
@@ -77,15 +77,13 @@ function Filter({ match, updateItems }) {
                 />
               </Category>
               <ActionButtonsContainer>
-                <ToggleButton onClick={() => setIsActive(false)}>
-                  Cancel
-                </ToggleButton>
+                <ToggleButton onClick={removeActive}>Cancel</ToggleButton>
                 <SendButton onClick={filterItems}>Filter</SendButton>
               </ActionButtonsContainer>
             </CategoriesContainer>
           </BlockContainer>
         </FiltersContainer>
-      ) : null}
+      )}
     </FilterContent>
   );
 }

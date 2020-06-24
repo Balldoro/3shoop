@@ -14,12 +14,18 @@ import {
 import Sort from "../Sort/Sort";
 import Filter from "../Filter/Filter";
 
-function Category({ match }) {
+function Category({
+  match: {
+    params: { slug }
+  }
+}) {
+  const categoryCollection = slug;
   const [items, setItems] = useState([]);
+
   useEffect(() => {
     let isMounted = true;
     const fetchItems = async () => {
-      const collection = await fetchCollection(match.params.slug);
+      const collection = await fetchCollection(categoryCollection);
       const items = await convertToProductObjectsFrom(collection);
       setItems(items);
     };
@@ -27,13 +33,17 @@ function Category({ match }) {
       fetchItems();
     }
     return () => (isMounted = false);
-  }, [match]);
+  }, [categoryCollection]);
+
   return (
     <main style={{ position: "relative" }}>
-      <Title>{match.params.slug}</Title>
+      <Title>{categoryCollection}</Title>
       <BlockContainer>
         <OptionsContainer>
-          <Filter match={match} updateItems={setItems} />
+          <Filter
+            collectionToFilter={categoryCollection}
+            updateItems={setItems}
+          />
           <Sort setItems={setItems} />
         </OptionsContainer>
         <Grid>
@@ -42,7 +52,7 @@ function Category({ match }) {
                 <Product key={item.id}>
                   <Link
                     to={{
-                      pathname: `${match.params.slug}/${item.id}`,
+                      pathname: `${categoryCollection}/${item.id}`,
                       state: item
                     }}
                   >
