@@ -66,3 +66,7 @@ export const PaymentImg = styled.img`
   max-width: 65px;
   width: 50%;
 `;
+
+export const DateSlash = styled.span`
+  font-size: 2rem;
+`;

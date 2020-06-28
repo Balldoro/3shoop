@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BlockContainer, Grid } from "../../GlobalStyles";
-import { OptionsContainer, Title } from "./CategoryStyles";
+import { OptionsContainer, Title, Wrapper } from "./CategoryStyles";
 import {
   fetchCollection,
   convertToProductObjectsFrom
@@ -31,7 +31,7 @@ function Category({
   }, [categoryCollection]);
 
   return (
-    <main style={{ position: "relative" }}>
+    <Wrapper>
       <Title>{categoryCollection}</Title>
       <BlockContainer>
         <OptionsContainer>
@@ -52,7 +52,7 @@ function Category({
             ))}
         </Grid>
       </BlockContainer>
-    </main>
+    </Wrapper>
   );
 }
 export default Category;

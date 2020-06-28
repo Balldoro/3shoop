@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.main`
+  position: relative;
+`;
+
 export const Title = styled.h1`
   background-color: #3d98b9;
   color: #fff;

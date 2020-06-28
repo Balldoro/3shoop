@@ -3,21 +3,22 @@ import {
   CloseButton,
   ButtonContainer,
   Background,
-  Image
+  Image,
+  Wrapper
 } from "./ImageViewerStyles";
 import { FaTimes } from "react-icons/fa";
 
 function ImageViewer({ src, handleOnClick }) {
   return (
     <Background onClick={handleOnClick}>
-      <div style={{ position: "relative" }}>
+      <Wrapper>
         <ButtonContainer>
           <CloseButton>
             <FaTimes />
           </CloseButton>
         </ButtonContainer>
         <Image src={src} alt="" />
-      </div>
+      </Wrapper>
     </Background>
   );
 }

@@ -24,7 +24,8 @@ import {
   PaymentImg,
   PaymentCircle,
   PaymentButtonLeft,
-  PaymentButtonRight
+  PaymentButtonRight,
+  DateSlash
 } from "./BillingStyles";
 
 function Billing() {
@@ -126,10 +127,10 @@ function Billing() {
                           <ErrorMessage
                             errors={errors}
                             name="cardDate.mm"
-                            as={<FormWarning style={{ display: "block" }} />}
+                            as={<FormWarning />}
                           />
                         </div>
-                        <span style={{ fontSize: "2rem" }}>/</span>
+                        <DateSlash>/</DateSlash>
                         <div>
                           <Input
                             name="cardDate.yy"
@@ -149,7 +150,7 @@ function Billing() {
                           <ErrorMessage
                             errors={errors}
                             name="cardDate.yy"
-                            as={<FormWarning style={{ display: "block" }} />}
+                            as={<FormWarning />}
                           />
                         </div>
                       </MultipleInputsWrapper>

@@ -14,6 +14,10 @@ export const Background = styled.div`
   z-index: 100;
 `;
 
+export const Wrapper = styled.div`
+  position: relative;
+`;
+
 export const Image = styled.img`
   border: 1px solid #dcdcdc;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
