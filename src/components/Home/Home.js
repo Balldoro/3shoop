@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BlockContainer, SectionTitle, Grid } from "../../GlobalStyles";
 import { Title } from "./HomeStyles";
-import hero from "./hero.jpg";
+import hero from "../../assets/hero.jpg";
 import {
   fetchStorageURL,
   fetchCollection

@@ -15,8 +15,8 @@ import { useHistory } from "react-router-dom";
 import { PaymentContext } from "../../../context/PaymentContext";
 import AccessDenied from "../AccessDenied/AccessDenied";
 import LeavePrompt from "../LeavePrompt/LeavePrompt";
-import visa from "./Visa.svg";
-import masterCard from "./mc_symbol.svg";
+import visa from "../../../assets/Visa.svg";
+import masterCard from "../../../assets/mc_symbol.svg";
 import {
   PaymentList,
   PaymentItem,
