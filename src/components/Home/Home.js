@@ -36,18 +36,17 @@ function Home() {
         <section>
           <SectionTitle>Categories</SectionTitle>
           <Grid>
-            {categories.length !== 0
-              ? categories.map(category => (
-                  <Category key={category.name}>
-                    <LinkWrapper to={`/${category.name}`}>
-                      <ImageContainer>
-                        <img src={category.image} alt={category.name} />
-                      </ImageContainer>
-                      <CategoryTitle>{category.name}</CategoryTitle>
-                    </LinkWrapper>
-                  </Category>
-                ))
-              : null}
+            {categories.length &&
+              categories.map(category => (
+                <Category key={category.name}>
+                  <LinkWrapper to={`/${category.name}`}>
+                    <ImageContainer>
+                      <img src={category.image} alt={category.name} />
+                    </ImageContainer>
+                    <CategoryTitle>{category.name}</CategoryTitle>
+                  </LinkWrapper>
+                </Category>
+              ))}
           </Grid>
         </section>
       </main>

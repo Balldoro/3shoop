@@ -42,7 +42,7 @@ function Billing() {
 
   return (
     <>
-      {Object.entries(state).length !== 0 ? (
+      {Object.entries(state).length ? (
         <>
           <LeavePrompt />
           <ProgressTitle>Billing</ProgressTitle>

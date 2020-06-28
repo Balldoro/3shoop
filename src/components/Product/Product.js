@@ -53,7 +53,7 @@ function Product({ match: { params }, location: { state } }) {
 
   return (
     <Wrapper>
-      {Object.entries(product).length !== 0 && (
+      {Object.entries(product).length && (
         <BlockContainer>
           <ProductHeader>
             <ProductTitle>{product.name}</ProductTitle>

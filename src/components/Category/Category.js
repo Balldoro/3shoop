@@ -47,24 +47,23 @@ function Category({
           <Sort setItems={setItems} />
         </OptionsContainer>
         <Grid>
-          {items.length !== 0
-            ? items.map(item => (
-                <Product key={item.id}>
-                  <Link
-                    to={{
-                      pathname: `${categoryCollection}/${item.id}`,
-                      state: item
-                    }}
-                  >
-                    <img src={item.img} alt={item.name} />
-                    <ProductInfo>
-                      <span>{item.name}</span>
-                      <span>${item.price.toFixed(2)}</span>
-                    </ProductInfo>
-                  </Link>
-                </Product>
-              ))
-            : null}
+          {items.length &&
+            items.map(item => (
+              <Product key={item.id}>
+                <Link
+                  to={{
+                    pathname: `${categoryCollection}/${item.id}`,
+                    state: item
+                  }}
+                >
+                  <img src={item.img} alt={item.name} />
+                  <ProductInfo>
+                    <span>{item.name}</span>
+                    <span>${item.price.toFixed(2)}</span>
+                  </ProductInfo>
+                </Link>
+              </Product>
+            ))}
         </Grid>
       </BlockContainer>
     </main>
