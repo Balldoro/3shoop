@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { BlockContainer, Grid } from "../../GlobalStyles";
-import {
-  ProductInfo,
-  Product,
-  OptionsContainer,
-  Title
-} from "./CategoryStyles";
-import { Link } from "react-router-dom";
+import { OptionsContainer, Title } from "./CategoryStyles";
 import {
   fetchCollection,
   convertToProductObjectsFrom
 } from "../../helpers/firabaseFunctions";
 import Sort from "./Sort/Sort";
 import Filter from "./Filter/Filter";
+import ProductItem from "./ProductItem/ProductItem";
 
 function Category({
   match: {
@@ -49,20 +44,11 @@ function Category({
         <Grid>
           {items.length &&
             items.map(item => (
-              <Product key={item.id}>
-                <Link
-                  to={{
-                    pathname: `${categoryCollection}/${item.id}`,
-                    state: item
-                  }}
-                >
-                  <img src={item.img} alt={item.name} />
-                  <ProductInfo>
-                    <span>{item.name}</span>
-                    <span>${item.price.toFixed(2)}</span>
-                  </ProductInfo>
-                </Link>
-              </Product>
+              <ProductItem
+                key={item.id}
+                data={item}
+                path={`${categoryCollection}/${item.id}`}
+              />
             ))}
         </Grid>
       </BlockContainer>

@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { BlockContainer, SectionTitle, Grid } from "../../GlobalStyles";
-import {
-  Category,
-  CategoryTitle,
-  ImageContainer,
-  Title,
-  LinkWrapper
-} from "./HomeStyles";
+import { Title } from "./HomeStyles";
 import hero from "./hero.jpg";
 import {
   fetchStorageURL,
   fetchCollection
 } from "../../helpers/firabaseFunctions";
+import CategoryItem from "./CategoryItem/CategoryItem";
 
 function Home() {
   const [categories, setCategories] = useState([]);
@@ -21,8 +16,8 @@ function Home() {
       const categories = await Promise.all(
         collection.docs.map(async doc => {
           const itemData = doc.data();
-          const image = await fetchStorageURL(itemData.image);
-          return { name: itemData.name, image };
+          const img = await fetchStorageURL(itemData.image);
+          return { name: itemData.name, img };
         })
       );
       setCategories(categories);
@@ -38,14 +33,7 @@ function Home() {
           <Grid>
             {categories.length &&
               categories.map(category => (
-                <Category key={category.name}>
-                  <LinkWrapper to={`/${category.name}`}>
-                    <ImageContainer>
-                      <img src={category.image} alt={category.name} />
-                    </ImageContainer>
-                    <CategoryTitle>{category.name}</CategoryTitle>
-                  </LinkWrapper>
-                </Category>
+                <CategoryItem data={category} key={category.name} />
               ))}
           </Grid>
         </section>
